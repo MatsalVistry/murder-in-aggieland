@@ -15,6 +15,7 @@
             // make a table called test with row id and name
             $query = "create table test (id serial, name varchar(255));";
             $result = pg_query($dbconn, $query);
+            echo "Table Created!";
         }
     }
     else
