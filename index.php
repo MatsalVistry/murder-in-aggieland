@@ -1,4 +1,5 @@
 <?php
+    header('Access-Control-Allow-Origin: *');
     $dbconn = pg_connect("host=ec2-34-226-11-94.compute-1.amazonaws.com port=5432 dbname=d3pn0nhl7uusfl user=frlqbtgkemxcet password=d90286b7c870a5195ec5709a37a460b82d3ff8d339720460cd43d9192a7874c1");
 
     $is_get = $_SERVER['REQUEST_METHOD'] == 'GET';
