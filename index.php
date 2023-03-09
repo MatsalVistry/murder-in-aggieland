@@ -4,6 +4,8 @@
     $is_get = $_SERVER['REQUEST_METHOD'] == 'GET';
     $is_post = $_SERVER['REQUEST_METHOD'] == 'POST';
 
+    echo $is_get ." ". $is_post;
+
     if($is_post)
     {
         if($_POST['functionName'] == "print")
