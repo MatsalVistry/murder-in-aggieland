@@ -8,6 +8,8 @@
 
     if($is_post)
     {
+        echo "Inside Post";
+        echo "Function Name: " . $_POST['functionName'] . "";
         if($_POST['functionName'] == "print")
         {
             echo "Hello World Post!";
@@ -22,6 +24,8 @@
     }
     else
     {
+        echo "Inside Get";
+        echo "Function Name: " . $_GET['functionName'] . "";
         if($_GET['functionName'] == "print")
         {
             echo "Hello World Get!";
