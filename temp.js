@@ -5,7 +5,7 @@ $.ajax({
     headers: {  'Access-Control-Allow-Origin': '*' },
     url: "https://murder-in-aggieland.herokuapp.com/index.php",
     data: {
-        functionName: "print",
+        functionName: "makeTable",
     },
     success: function(response) {
         console.log(response);
