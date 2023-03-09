@@ -12,22 +12,24 @@
         echo "Inside Post";
         echo "Function Name: " . $_POST['functionName'] . "";
 
-        $contents = file_get_contents('php://input');
-        // print out all contents
-
-        echo "Contents: " . $contents . "";
-
-        // if($_POST['functionName'] == "print")
-        // {
-        //     echo "Hello World Post!";
-        // }
-        // else if($_POST['functionName'] == "makeTable")
-        // {
-        //     // make a table called test with row id and name
-        //     $query = "create table test (id serial, name varchar(255));";
-        //     $result = pg_query($dbconn, $query);
-        //     echo "Table Created!";
-        // }
+        if($_POST['functionName'] == "print")
+        {
+            echo "Hello World Post!";
+        }
+        else if($_POST['functionName'] == "makeTable")
+        {
+            // make a table called test with row id and name
+            $query = "create table test (id serial, name varchar(255));";
+            $result = pg_query($dbconn, $query);
+            echo "Table Created!";
+        }
+        else if($_POST['functionName'] == "deleteTable")
+        {
+            // delete table test
+            $query = "drop table test;";
+            $result = pg_query($dbconn, $query);
+            echo "Table Deleted!";
+        }
     }
     else
     {
