@@ -4,7 +4,7 @@
     $is_get = $_SERVER['REQUEST_METHOD'] == 'GET';
     $is_post = $_SERVER['REQUEST_METHOD'] == 'POST';
 
-    echo $is_get ." ". $is_post;
+    echo "Request Method: " . $_SERVER['REQUEST_METHOD'] . "";
 
     if($is_post)
     {
