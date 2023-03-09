@@ -30,6 +30,20 @@
         {
             echo "Hello World Get!";
         }
+        else if($_GET['functionName'] == 'makeTable')
+        {
+            // make a table called test with row id and name
+            $query = "create table test (id serial, name varchar(255));";
+            $result = pg_query($dbconn, $query);
+            echo "Table Created!";
+        }
+        else if($_GET['functionName'] == 'deleteTable')
+        {
+            // delete table test
+            $query = "drop table test;";
+            $result = pg_query($dbconn, $query);
+            echo "Table Deleted!";
+        }
     }
 ?>
 
