@@ -14,10 +14,7 @@
         $contents = file_get_contents('php://input');
         // print out all contents
 
-        $contents = json_decode($contents, true);
-        // print out all contents
-
-        echo "Contents: " . $contents['functionName'] . "";
+        echo "Contents: " . $contents . "";
 
         // if($_POST['functionName'] == "print")
         // {
