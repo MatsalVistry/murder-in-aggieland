@@ -15,6 +15,23 @@
 
             $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password');";
             $result = pg_query($dbconn, $query);
+            
+            $response;
+
+            if($result)
+            {
+                $response = array(
+                    'code' => 0,
+                    'message' => 'Success'
+                );
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'Failed to add user'
+                );
+            }
         }
         else if($_POST['functionName'] == "verifyCredentials")
         {
