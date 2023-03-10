@@ -7,7 +7,7 @@
 -- column 4: password - varchar(150)
 
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
+    user_id SERIAL PRIMARY KEY,
     username VARCHAR(150),
     email VARCHAR(150),
     password VARCHAR(150)

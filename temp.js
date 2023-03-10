@@ -6,9 +6,7 @@ $.ajax({
     url: "https://murder-in-aggieland.herokuapp.com/API/users.php",
     data: {
         functionName: "getCurrentGames",
-        username: "vatsal",
-        password: "123",
-        email: "vm@gmail.com"
+        user_id: 1
     },
     success: function(response) {
         console.log(response);

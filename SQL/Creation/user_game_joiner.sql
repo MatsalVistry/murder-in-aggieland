@@ -7,9 +7,8 @@
 -- column 4: current_priority - int
 
 CREATE TABLE user_game_joiner (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id),
-    game_id INTEGER REFERENCES game(id),
+    user_game_joiner_id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id),
+    game_id INTEGER REFERENCES game(game_id),
     current_priority INTEGER
 );
-

@@ -64,29 +64,20 @@
         }
     }
     else
-    {
-        // TABLE user_game_joiner (
-        //     id SERIAL PRIMARY KEY,
-        //     user_id INTEGER REFERENCES users(id),
-        //     game_id INTEGER REFERENCES game(id),
-        //     current_priority INTEGER
-        // );
-
-        // TABLE game (
-        //     id SERIAL PRIMARY KEY,
-        //     game_name VARCHAR(150),
-        //     creator_id INTEGER REFERENCES users(id),
-        //     intial_text VARCHAR(1000),
-        //     game_description VARCHAR(150),
-        // );
+    {        
         
-        
-        
+// CREATE TABLE game (
+//     game_id SERIAL PRIMARY KEY,
+//     game_name VARCHAR(150),
+//     creator_id INTEGER REFERENCES users(user_id),
+//     initial_text text,
+//     game_description text
+// );
         if($_GET['functionName'] == "getCurrentGames")
         {
             $user_id = $_GET['user_id'];
 
-            $query = "SELECT * FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.id WHERE ugj.user_id = '$user_id';";
+            $query = "SELECT g.game_id, g.game_name, g.game_description, ugj.current_priority FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.id WHERE ugj.user_id = '$user_id';";
             $result = pg_query($dbconn, $query);
             $rows = pg_fetch_all($result);
 
@@ -107,10 +98,10 @@
 
                 foreach($rows as $row)
                 {
-                    array_push($response['game_ids'], $row['game_id']);
-                    array_push($response['game_names'], $row['game_name']);
-                    array_push($response['game_descriptions'], $row['game_description']);
-                    array_push($response['current_priorities'], $row['current_priority']);
+                    // array_push($response['game_ids'], $row['game_id']);
+                    // array_push($response['game_names'], $row['game_name']);
+                    // array_push($response['game_descriptions'], $row['game_description']);
+                    // array_push($response['current_priorities'], $row['current_priority']);
                 }
             }
             else

@@ -1,39 +1,3 @@
--- CREATE TABLE users (
---     id SERIAL PRIMARY KEY,
---     username VARCHAR(150),
---     email VARCHAR(150),
---     password VARCHAR(150)
--- );
-
--- CREATE TABLE game (
---     id SERIAL PRIMARY KEY,
---     game_name VARCHAR(150),
---     creator_id INTEGER REFERENCES users(id),
---     intial_text VARCHAR(1000),
---     game_description VARCHAR(150),
--- );
-
--- CREATE TABLE user_game_joiner (
---     id SERIAL PRIMARY KEY,
---     user_id INTEGER REFERENCES users(id),
---     game_id INTEGER REFERENCES game(id),
---     current_priority INTEGER
--- );
-
--- CREATE TABLE character (
---     id SERIAL PRIMARY KEY,
---     description VARCHAR(1000),
---     name VARCHAR(150),
---     game_id INTEGER REFERENCES game(id),
---     image_url VARCHAR(1000),
---     priority INTEGER,
---     dialogue VARCHAR(1000),
---     x_coordinate DOUBLE PRECISION,
---     y_coordinate DOUBLE PRECISION,
---     z_coordinate DOUBLE PRECISION,
---     is_killer BOOLEAN
--- );
-
 INSERT INTO users (username, email, password) VALUES ('vatsal', 'vm@gmail.com', '123');
 INSERT INTO users (username, email, password) VALUES ('rohan', 'rt@gmail.com', '123');
 INSERT INTO users (username, email, password) VALUES ('ashrita', 'av@gmail.com', '123');
