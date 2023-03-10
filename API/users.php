@@ -90,6 +90,8 @@
             $result = pg_query($dbconn, $query);
             $rows = pg_fetch_all($result);
 
+            echo json_encode($rows);
+
             $response;
 
             if($rows)
