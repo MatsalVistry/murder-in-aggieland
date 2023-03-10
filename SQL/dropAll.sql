@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS character;
+DROP TABLE IF EXISTS user_game_joiner;
+DROP TABLE IF EXISTS game;
+DROP TABLE IF EXISTS users;
