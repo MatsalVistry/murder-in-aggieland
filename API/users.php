@@ -65,14 +65,6 @@
     }
     else
     {        
-        
-// CREATE TABLE game (
-//     game_id SERIAL PRIMARY KEY,
-//     game_name VARCHAR(150),
-//     creator_id INTEGER REFERENCES users(user_id),
-//     initial_text text,
-//     game_description text
-// );
         if($_GET['functionName'] == "getCurrentGames")
         {
             $user_id = $_GET['user_id'];
@@ -80,8 +72,6 @@
             $query = "SELECT g.game_id, g.game_name, g.game_description, ugj.current_priority FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.game_id WHERE ugj.user_id = '$user_id';";
             $result = pg_query($dbconn, $query);
             $rows = pg_fetch_all($result);
-
-            echo json_encode($rows);
 
             $response;
 
@@ -109,6 +99,43 @@
                 $response = array(
                     'code' => 1,
                     'message' => 'Failed to get current games'
+                );
+            }
+
+            echo json_encode($response);
+        }
+        if($_GET['functionName'] == "getNotStartedGames")
+        {
+            $user_id = $_GET['user_id'];
+
+            $query = "SELECT g.game_id, g.game_name, g.game_description FROM game as g WHERE g.game_id NOT IN (SELECT ugj.game_id FROM user_game_joiner as ugj WHERE ugj.user_id = '$user_id');";
+            $result = pg_query($dbconn, $query);
+            $rows = pg_fetch_all($result);
+
+            $response;
+
+            if($rows)
+            {
+                $response = array(
+                    'code' => 0,
+                    'message' => 'Success',
+                    'game_ids' => array(),
+                    'game_names' => array(),
+                    'game_descriptions' => array()
+                );
+
+                foreach($rows as $row)
+                {
+                    array_push($response['game_ids'], $row['game_id']);
+                    array_push($response['game_names'], $row['game_name']);
+                    array_push($response['game_descriptions'], $row['game_description']);
+                }
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'Failed to get not started games'
                 );
             }
 
