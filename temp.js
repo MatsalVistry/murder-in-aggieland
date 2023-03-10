@@ -1,11 +1,11 @@
 console.log('temp.js');
 
 $.ajax({
-    type: "POST",
+    type: "GET",
     headers: {  'Access-Control-Allow-Origin': '*' },
     url: "https://murder-in-aggieland.herokuapp.com/API/users.php",
     data: {
-        functionName: "addUser",
+        functionName: "getCurrentGames",
         username: "vatsal",
         password: "123",
         email: "vm@gmail.com"

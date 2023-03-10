@@ -82,9 +82,9 @@
         
         
         
-        if($_POST['functionName'] == "getCurrentGames")
+        if($_GET['functionName'] == "getCurrentGames")
         {
-            $user_id = $_POST['user_id'];
+            $user_id = $_GET['user_id'];
 
             $query = "SELECT * FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.id WHERE ugj.user_id = '$user_id';";
             $result = pg_query($dbconn, $query);
