@@ -77,7 +77,7 @@
         {
             $user_id = $_GET['user_id'];
 
-            $query = "SELECT g.game_id, g.game_name, g.game_description, ugj.current_priority FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.id WHERE ugj.user_id = '$user_id';";
+            $query = "SELECT g.game_id, g.game_name, g.game_description, ugj.current_priority FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.game_id WHERE ugj.user_id = '$user_id';";
             $result = pg_query($dbconn, $query);
             $rows = pg_fetch_all($result);
 
@@ -98,10 +98,10 @@
 
                 foreach($rows as $row)
                 {
-                    // array_push($response['game_ids'], $row['game_id']);
-                    // array_push($response['game_names'], $row['game_name']);
-                    // array_push($response['game_descriptions'], $row['game_description']);
-                    // array_push($response['current_priorities'], $row['current_priority']);
+                    array_push($response['game_ids'], $row['game_id']);
+                    array_push($response['game_names'], $row['game_name']);
+                    array_push($response['game_descriptions'], $row['game_description']);
+                    array_push($response['current_priorities'], $row['current_priority']);
                 }
             }
             else
