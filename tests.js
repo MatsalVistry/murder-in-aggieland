@@ -217,7 +217,7 @@ function getCharacterDisplayData()
 }
 
 
-// addUser();
+addUser();
 // verifyCredentials();
 // getCurrentGames();
 // getNotStartedGames();
@@ -229,4 +229,4 @@ function getCharacterDisplayData()
 // getCurrentDestination();
 
 // getCurrentCharacterDialogue();
-getCharacterDisplayData();
+// getCharacterDisplayData();

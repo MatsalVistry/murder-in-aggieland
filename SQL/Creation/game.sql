@@ -16,5 +16,5 @@ CREATE TABLE game (
     game_description text,
     begin_x DOUBLE PRECISION,
     begin_y DOUBLE PRECISION,
-    begin_z DOUBLE PRECISION,
+    begin_z DOUBLE PRECISION
 );
