@@ -281,8 +281,8 @@ function getCharacterDisplayData()
 
 // enrollUserInGame();
 // getInitialGameText();
-checkHasGameStarted();
-// checkUserReachedStartLocation();
+// checkHasGameStarted();
+checkUserReachedStartLocation();
 // checkUserReachedLocation();
 // updateUserGamePriority();
 // getCurrentDestination();
