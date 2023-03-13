@@ -76,6 +76,34 @@
 
             echo json_encode($response);
         }
+        else if($_POST['functionName'] == "updateUserGamePriority")
+        {
+            $user_id = $_POST['user_id'];
+            $game_id = $_POST['game_id'];
+
+            // increment current_priority in user_game_joiner where user_id = $user_id and game_id = $game_id
+            $query = "UPDATE user_game_joiner SET current_priority = current_priority + 1 WHERE user_id = '$user_id' AND game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+
+            $response;
+
+            if($result)
+            {
+                $response = array(
+                    'code' => 0,
+                    'message' => 'Success'
+                );
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'Failed to update user game priority'
+                );
+            }
+
+            echo json_encode($response);
+        }
     }
     else
     {       

@@ -121,7 +121,25 @@ function checkUserReachedLocation()
             user_id: 1
         },
         success: function(response) {
-            console.log("Get Initial Game Text:");
+            console.log("Check User Reached Location:");
+            console.log(response);
+        }
+    });
+}
+
+function updateUserGamePriority()
+{
+    $.ajax({
+        type: "POST",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
+        data: {
+            functionName: "updateUserGamePriority",
+            game_id: 1,
+            user_id: 1
+        },
+        success: function(response) {
+            console.log("Update User Game Priority:");
             console.log(response);
         }
     });
@@ -135,3 +153,4 @@ function checkUserReachedLocation()
 // enrollUserInGame();
 // getInitialGameText();
 // checkUserReachedLocation();
+updateUserGamePriority();
