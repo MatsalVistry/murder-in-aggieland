@@ -11,4 +11,21 @@ INSERT INTO game (game_name, creator_id, initial_text, game_description) VALUES 
 INSERT INTO user_game_joiner (user_id, game_id, current_priority) VALUES (1, 1, 1);
 INSERT INTO user_game_joiner (user_id, game_id, current_priority) VALUES (1, 2, 1);
 
--- INSERT INTO character (description, name, priority, dialogue, )
+
+
+-- CREATE TABLE character (
+--     character_id SERIAL PRIMARY KEY,
+--     description text,
+--     name VARCHAR(150),
+--     game_id INTEGER REFERENCES game(game_id),
+--     image_url VARCHAR(1000),
+--     priority INTEGER,
+--     dialogue text,
+--     x_coordinate DOUBLE PRECISION,
+--     y_coordinate DOUBLE PRECISION,
+--     z_coordinate DOUBLE PRECISION,
+--     is_killer BOOLEAN
+-- );
+
+INSERT INTO character (description, name, game_id, image_url, priority, dialogue, x_coordinate, y_coordinate, z_coordinate, is_killer) VALUES ('Temp character desc', 'Builder', 1, 'www.pic.jpg', 1, 'Temp dialogue', 100, 100, 100, false);
+

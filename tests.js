@@ -106,6 +106,26 @@ function getInitialGameText()
     });
 }
 
+function checkUserReachedLocation()
+{
+    $.ajax({
+        type: "POST",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
+        data: {
+            functionName: "checkUserReachedLocation",
+            x_cord: 100,
+            y_cord: 100,
+            z_cord: 100,
+            game_id: 1,
+            user_id: 1
+        },
+        success: function(response) {
+            console.log("Get Initial Game Text:");
+            console.log(response);
+        }
+    });
+}
 
 // addUser();
 // verifyCredentials();
@@ -113,4 +133,5 @@ function getInitialGameText()
 // getNotStartedGames();
 
 // enrollUserInGame();
-getInitialGameText();
+// getInitialGameText();
+// checkUserReachedLocation();
