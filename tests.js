@@ -1,4 +1,4 @@
-console.log('temp.js');
+console.log('tests.js');
 
 function addUser()
 {
@@ -72,6 +72,6 @@ function getNotStartedGames()
 }
 
 // addUser();
-verifyCredentials();
+// verifyCredentials();
 // getCurrentGames();
 // getNotStartedGames();
