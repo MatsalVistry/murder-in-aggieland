@@ -102,12 +102,45 @@
                     'code' => 0,
                     'reached_location' => true
                 );
+
+                $query = "UPDATE user_game_joiner SET reached_begin = true WHERE game_id = '$game_id';";
+                $result = pg_query($dbconn, $query);
             }
             else
             {
                 $response = array(
                     'code' => 1,
                     'reached_location' => false
+                );
+            }
+
+            echo json_encode($response);
+        }
+        else if($_POST['functionName'] == "checkHasGameStarted")
+        {
+            $user_id = $_POST['user_id'];
+            $game_id = $_POST['game_id'];
+
+            $query = "SELECT reached_begin FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+            $row = pg_fetch_row($result);
+
+            $reached_begin = $row[0];
+
+            $response;
+
+            if($reached_begin)
+            {
+                $response = array(
+                    'code' => 0,
+                    'has_game_started' => true
+                );
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'has_game_started' => false
                 );
             }
 
