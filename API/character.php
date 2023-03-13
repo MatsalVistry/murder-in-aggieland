@@ -33,19 +33,22 @@
             $game_id = $_GET['game_id'];
             $user_id = $_GET['user_id'];
 
-            $query = "SELECT c.dialogue FROM user_game_joiner as ugj INNER JOIN character as c ON c.game_id = ugj.game_id AND c.priority < ugj.current_priority WHERE ugj.user_id = '$user_id' AND ugj.game_id = '$game_id';";
+            $query = "SELECT c.character_id, c.dialogue FROM user_game_joiner as ugj INNER JOIN character as c ON c.game_id = ugj.game_id AND c.priority < ugj.current_priority WHERE ugj.user_id = '$user_id' AND ugj.game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
 
+            $ids = array();
             $dialogue = array();
 
             while($row = pg_fetch_row($result))
             {
-                array_push($dialogue, $row[0]);
+                array_push($ids, $row[0]);
+                array_push($dialogue, $row[1]);
             }
 
             $response = array(
                 'code' => 0,
                 'message' => 'Success',
+                'ids' => $ids,
                 'dialogue' => $dialogue
             );
 

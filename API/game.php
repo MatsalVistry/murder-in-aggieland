@@ -84,8 +84,6 @@
             $game_id = $_POST['game_id'];
             $user_id = $_POST['user_id'];
 
-            // game table has begin_x, begin_y, begin_z
-
             $query = "SELECT begin_x, begin_y, begin_z FROM game WHERE game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
             $row = pg_fetch_row($result);

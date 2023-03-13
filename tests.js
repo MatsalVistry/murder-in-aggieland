@@ -286,7 +286,10 @@ function getCharacterDisplayData()
 // updateUserGamePriority();
 // checkUserReachedLocation();
 // updateUserGamePriority();
-getCurrentDestination();
+// getCurrentDestination();
 
 // getCurrentCharacterDialogue();
+getAllPastCharactersDialogue();
 // getCharacterDisplayData();
+
+// placeGuess();
