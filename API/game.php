@@ -105,15 +105,6 @@
 
                 $query = "UPDATE user_game_joiner SET reached_begin = true WHERE user_id = '$user_id' AND game_id = '$game_id';";
                 $result = pg_query($dbconn, $query);
-
-                // if(!$result)
-                // {
-                //     echo "Failed to update reached_begin";
-                // }
-                // else
-                // {
-                //     echo "Updated reached_begin";
-                // }
             }
             else
             {
@@ -269,9 +260,8 @@
 
             $response;
 
-            if($result)
+            if($row = pg_fetch_row($result))
             {
-                $row = pg_fetch_row($result);
                 $response = array(
                     'code' => 0,
                     'message' => 'Success',

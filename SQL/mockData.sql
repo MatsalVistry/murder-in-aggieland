@@ -12,5 +12,5 @@ INSERT INTO user_game_joiner (user_id, game_id, current_priority, is_finished, r
 INSERT INTO user_game_joiner (user_id, game_id, current_priority, is_finished, reached_begin) VALUES (1, 2, 0, false, false);
 
 INSERT INTO character (description, name, game_id, image_url, priority, dialogue, x_coordinate, y_coordinate, z_coordinate, is_killer) VALUES ('Temp character desc 1', 'Builder', 1, 'www.pic1.jpg', 1, 'Temp dialogue 1', 100, 100, 100, true);
-INSERT INTO character (description, name, game_id, image_url, priority, dialogue, x_coordinate, y_coordinate, z_coordinate, is_killer) VALUES ('Temp character desc 2', 'Architect', 1, 'www.pic2.jpg', 1, 'Temp dialogue 2', 100, 100, 100, false);
+INSERT INTO character (description, name, game_id, image_url, priority, dialogue, x_coordinate, y_coordinate, z_coordinate, is_killer) VALUES ('Temp character desc 2', 'Architect', 1, 'www.pic2.jpg', 2, 'Temp dialogue 2', 100, 100, 100, false);
 
