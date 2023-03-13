@@ -272,6 +272,25 @@ function getCharacterDisplayData()
     });
 }
 
+function placeGuess()
+{
+    $.ajax({
+        type: "POST",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
+        data: {
+            functionName: "placeGuess",
+            user_id: 1,
+            game_id: 1,
+            character_guess_id: 2
+        },
+        success: function(response) {
+            console.log("Place Guess:");
+            console.log(response);
+        }
+    });
+}
+
 
 // addUser();
 // verifyCredentials();
@@ -289,7 +308,7 @@ function getCharacterDisplayData()
 // getCurrentDestination();
 
 // getCurrentCharacterDialogue();
-getAllPastCharactersDialogue();
+// getAllPastCharactersDialogue();
 // getCharacterDisplayData();
 
-// placeGuess();
+placeGuess();
