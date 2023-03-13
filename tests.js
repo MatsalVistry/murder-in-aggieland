@@ -175,7 +175,25 @@ function getCurrentCharacterDialogue()
             user_id: 1
         },
         success: function(response) {
-            console.log("Get Current Character Dialogie:");
+            console.log("Get Current Character Dialogue:");
+            console.log(response);
+        }
+    });
+}
+
+function getAllPastCharactersDialogue()
+{
+    $.ajax({
+        type: "GET",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/character.php",
+        data: {
+            functionName: "getAllPastCharactersDialogue",
+            game_id: 1,
+            user_id: 1
+        },
+        success: function(response) {
+            console.log("Get All Past Characters Dialogue:");
             console.log(response);
         }
     });
@@ -190,4 +208,6 @@ function getCurrentCharacterDialogue()
 // getInitialGameText();
 // checkUserReachedLocation();
 // updateUserGamePriority();
-getCurrentDestination();
+// getCurrentDestination();
+// getCurrentCharacterDialogue();
+getAllPastCharactersDialogue();
