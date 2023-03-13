@@ -51,24 +51,33 @@
 
             echo json_encode($response);
         }
-        else if($_GET['functionName'] == "getAllCharacterDescriptions")
+        else if($_GET['functionName'] == "getCharacterDisplayData")
         {
             $game_id = $_GET['game_id'];
 
-            $query = "SELECT c.description FROM character as c WHERE c.game_id = '$game_id';";
+            $query = "SELECT character_id, description, name, image_url FROM character WHERE game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
 
+            $ids = array();
             $descriptions = array();
+            $names = array();
+            $image_urls = array();
 
             while($row = pg_fetch_row($result))
             {
-                array_push($descriptions, $row[0]);
+                array_push($ids, $row[0]);
+                array_push($descriptions, $row[1]);
+                array_push($names, $row[2]);
+                array_push($image_urls, $row[3]);
             }
 
             $response = array(
                 'code' => 0,
                 'message' => 'Success',
-                'descriptions' => $descriptions
+                'ids' => $ids,
+                'descriptions' => $descriptions,
+                'names' => $names,
+                'image_urls' => $image_urls
             );
 
             echo json_encode($response);
