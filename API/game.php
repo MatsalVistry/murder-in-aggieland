@@ -125,7 +125,9 @@
             $result = pg_query($dbconn, $query);
             $row = pg_fetch_row($result);
 
+            echo $row[0];
             $reached_begin = $row[0];
+            echo $reached_begin;
 
             $response;
 

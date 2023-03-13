@@ -144,6 +144,45 @@ function checkUserReachedLocation()
     });
 }
 
+function checkUserReachedStartLocation()
+{
+    $.ajax({
+        type: "POST",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
+        data: {
+            functionName: "checkUserReachedLocation",
+            x_cord: 0,
+            y_cord: 0,
+            z_cord: 0,
+            game_id: 1,
+            user_id: 1
+        },
+        success: function(response) {
+            console.log("Check User Reached Start Location:");
+            console.log(response);
+        }
+    });
+}
+
+function checkHasGameStarted()
+{
+    $.ajax({
+        type: "POST",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
+        data: {
+            functionName: "checkHasGameStarted",
+            game_id: 1,
+            user_id: 1
+        },
+        success: function(response) {
+            console.log("Check Has Game Started:");
+            console.log(response);
+        }
+    });
+}
+
 function updateUserGamePriority()
 {
     $.ajax({
@@ -240,8 +279,10 @@ function getCharacterDisplayData()
 // getNotStartedGames();
 // getFinishedGames();
 
-enrollUserInGame();
+// enrollUserInGame();
 // getInitialGameText();
+checkHasGameStarted();
+// checkUserReachedStartLocation();
 // checkUserReachedLocation();
 // updateUserGamePriority();
 // getCurrentDestination();
