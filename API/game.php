@@ -76,6 +76,43 @@
 
             echo json_encode($response);
         }
+        else if($_POST['functionName'] == "checkUserReachedStartLocation")
+        {
+            $x_cord = $_POST['x_cord'];
+            $y_cord = $_POST['y_cord'];
+            $z_cord = $_POST['z_cord'];
+            $game_id = $_POST['game_id'];
+            $user_id = $_POST['user_id'];
+
+            // game table has begin_x, begin_y, begin_z
+
+            $query = "SELECT begin_x, begin_y, begin_z FROM game WHERE game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+            $row = pg_fetch_row($result);
+
+            $begin_x = $row[0];
+            $begin_y = $row[1];
+            $begin_z = $row[2];
+
+            $response;
+
+            if(abs($x_cord - $begin_x) < 10 && abs($y_cord - $begin_y) < 10 && abs($z_cord - $begin_z) < 10)
+            {
+                $response = array(
+                    'code' => 0,
+                    'reached_location' => true
+                );
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'reached_location' => false
+                );
+            }
+
+            echo json_encode($response);
+        }
         else if($_POST['functionName'] == "updateUserGamePriority")
         {
             $user_id = $_POST['user_id'];
