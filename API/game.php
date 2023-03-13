@@ -103,7 +103,7 @@
                     'reached_location' => true
                 );
 
-                $query = "UPDATE user_game_joiner SET reached_begin = true WHERE user_id = '$user_id' AND game_id = '$game_id';";
+                $query = "UPDATE user_game_joiner SET reached_begin = t WHERE user_id = '$user_id' AND game_id = '$game_id';";
                 $result = pg_query($dbconn, $query);
             }
             else
