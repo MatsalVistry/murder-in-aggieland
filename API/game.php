@@ -125,13 +125,11 @@
             $result = pg_query($dbconn, $query);
             $row = pg_fetch_row($result);
 
-            echo $row[0];
-            $reached_begin = $row[0];
-            echo $reached_begin;
+            $reached_begin = $row[0]; // f or t
 
             $response;
 
-            if($reached_begin)
+            if($reached_begin == 't')
             {
                 $response = array(
                     'code' => 0,
