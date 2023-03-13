@@ -33,7 +33,9 @@
         }
         else if($_GET['functionName'] == "getAllPastCharactersDialogue")
         {
-            // get all the previous characters dialogue and return an array of dialogue, do this by getting the current priority and then getting all the characters with a priority less than the current priority
+            $game_id = $_GET['game_id'];
+            $user_id = $_GET['user_id'];
+
             $query = "SELECT c.dialogue FROM user_game_joiner as ugj INNER JOIN character as c ON c.game_id = ugj.game_id AND c.priority < ugj.current_priority WHERE ugj.user_id = '$user_id' AND ugj.game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
 

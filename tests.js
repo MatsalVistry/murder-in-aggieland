@@ -209,5 +209,6 @@ function getAllPastCharactersDialogue()
 // checkUserReachedLocation();
 // updateUserGamePriority();
 // getCurrentDestination();
+
 // getCurrentCharacterDialogue();
 getAllPastCharactersDialogue();
