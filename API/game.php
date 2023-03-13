@@ -104,6 +104,51 @@
 
             echo json_encode($response);
         }
+        else if($_POST['functionName'] == "placeGuess")
+        {
+            $user_id = $_POST['user_id'];
+            $game_id = $_POST['game_id'];
+            $character_guess_id = $_POST['guess'];
+
+            $query = "SELECT is_killer FROM character WHERE game_id = '$game_id' AND character_id = '$character_guess_id';";
+            $result = pg_query($dbconn, $query);
+            $row = pg_fetch_row($result);
+
+            $is_killer = $row[0];
+
+            $response;
+
+            if($is_killer)
+            {
+                $query = "UPDATE user_game_joiner SET is_finished = true WHERE user_id = '$user_id' AND game_id = '$game_id';";
+                $result = pg_query($dbconn, $query);
+
+
+                if($result)
+                {
+                    $response = array(
+                        'code' => 0,
+                        'message' => 'Success'
+                    );
+                }
+                else
+                {
+                    $response = array(
+                        'code' => 1,
+                        'message' => 'Failed to update user game joiner'
+                    );
+                }
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'Incorrect guess'
+                );
+            }
+
+            echo json_encode($response);
+        }
     }
     else
     {       
