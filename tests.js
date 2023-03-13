@@ -151,7 +151,7 @@ function checkUserReachedStartLocation()
         headers: {  'Access-Control-Allow-Origin': '*' },
         url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
         data: {
-            functionName: "checkUserReachedLocation",
+            functionName: "checkUserReachedStartLocation",
             x_cord: 0,
             y_cord: 0,
             z_cord: 0,
