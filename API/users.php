@@ -108,7 +108,7 @@
 
             echo json_encode($response);
         }
-        if($_GET['functionName'] == "getNotStartedGames")
+        else if($_GET['functionName'] == "getNotStartedGames")
         {
             $user_id = $_GET['user_id'];
 
