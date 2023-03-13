@@ -71,7 +71,44 @@ function getNotStartedGames()
     });
 }
 
+function enrollUserInGame()
+{
+    $.ajax({
+        type: "POST",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
+        data: {
+            functionName: "enrollUserInGame",
+            user_id: 1,
+            game_id: 1
+        },
+        success: function(response) {
+            console.log("Enroll User In Game:");
+            console.log(response);
+        }
+    });
+}
+
+function getInitialGameText()
+{
+    $.ajax({
+        type: "GET",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
+        data: {
+            functionName: "getInitialGameText",
+            game_id: 1
+        },
+        success: function(response) {
+            console.log("Get Initial Game Text:");
+            console.log(response);
+        }
+    });
+}
+
 // addUser();
 // verifyCredentials();
 // getCurrentGames();
 // getNotStartedGames();
+
+// enrollUserInGame();

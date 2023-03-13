@@ -38,9 +38,33 @@
     }
     else
     {       
-        if($_GET['functionName'] == "getCurrentGames")
+        if($_GET['functionName'] == "getInitialGameText")
         {
+            $game_id = $_GET['game_id'];
 
+            $query = "SELECT initial_text FROM game WHERE game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+
+            $response;
+
+            if($result)
+            {
+                $row = pg_fetch_row($result);
+                $response = array(
+                    'code' => 0,
+                    'message' => 'Success',
+                    'initial_text' => $row[0]
+                );
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'Failed to get initial text'
+                );
+            }
+
+            echo json_encode($response);
         }
     }
 ?>
