@@ -145,6 +145,24 @@ function updateUserGamePriority()
     });
 }
 
+function getCurrentDestination()
+{
+    $.ajax({
+        type: "GET",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
+        data: {
+            functionName: "getCurrentDestination",
+            game_id: 1,
+            user_id: 1
+        },
+        success: function(response) {
+            console.log("Get Current Destination:");
+            console.log(response);
+        }
+    });
+}
+
 // addUser();
 // verifyCredentials();
 // getCurrentGames();
@@ -154,3 +172,4 @@ function updateUserGamePriority()
 // getInitialGameText();
 // checkUserReachedLocation();
 // updateUserGamePriority();
+getCurrentDestination();
