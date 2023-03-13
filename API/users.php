@@ -32,6 +32,8 @@
                     'message' => 'Failed to add user'
                 );
             }
+
+            echo json_encode($response);
         }
         else if($_POST['functionName'] == "verifyCredentials")
         {
@@ -61,10 +63,12 @@
                     'message' => 'Failed to verify credentials'
                 );
             }
+
+            echo json_encode($response);
         }
     }
     else
-    {        
+    {       
         if($_GET['functionName'] == "getCurrentGames")
         {
             $user_id = $_GET['user_id'];
