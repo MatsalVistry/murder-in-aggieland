@@ -7,10 +7,7 @@
 
     if($is_post)
     {
-        if($_POST['functionName'] == "enrollUserInGame")
-        {
-            
-        }
+
     }
     else
     {       
@@ -54,11 +51,28 @@
 
             echo json_encode($response);
         }
-        else if($_GET['functionName'] == "getCharacterDescriptions")
+        else if($_GET['functionName'] == "getAllCharacterDescriptions")
         {
+            $game_id = $_GET['game_id'];
 
+            $query = "SELECT c.description FROM character as c WHERE c.game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+
+            $descriptions = array();
+
+            while($row = pg_fetch_row($result))
+            {
+                array_push($descriptions, $row[0]);
+            }
+
+            $response = array(
+                'code' => 0,
+                'message' => 'Success',
+                'descriptions' => $descriptions
+            );
+
+            echo json_encode($response);
         }
-
     }
 ?>
 

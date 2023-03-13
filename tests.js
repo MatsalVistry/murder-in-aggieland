@@ -199,6 +199,23 @@ function getAllPastCharactersDialogue()
     });
 }
 
+function getAllCharacterDescriptions()
+{
+    $.ajax({
+        type: "GET",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/character.php",
+        data: {
+            functionName: "getAllCharacterDescriptions",
+            game_id: 1
+        },
+        success: function(response) {
+            console.log("Get All Characters Descriptions:");
+            console.log(response);
+        }
+    });
+}
+
 // addUser();
 // verifyCredentials();
 // getCurrentGames();
