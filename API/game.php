@@ -140,7 +140,7 @@
             $user_id = $_GET['user_id'];
             $game_id = $_GET['game_id'];
 
-            $query = "SELECT * FROM user_game_joiner as ugj INNER JOIN character as c ON c.game_id = ugj.game_id AND c.priority = ugj.current_priority WHERE ugj.user_id = ".$user_id." AND ugj.game_id = ".$game_id.";";
+            $query = "SELECT c.x_coordinate, c.y_coordinate, c.z_coordinate FROM user_game_joiner as ugj INNER JOIN character as c ON c.game_id = ugj.game_id AND c.priority = ugj.current_priority WHERE ugj.user_id = '$user_id' AND ugj.game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
 
             $response;
