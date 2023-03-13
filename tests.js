@@ -282,7 +282,7 @@ function placeGuess()
             functionName: "placeGuess",
             user_id: 1,
             game_id: 1,
-            character_guess_id: 2
+            character_guess_id: 1
         },
         success: function(response) {
             console.log("Place Guess:");
@@ -311,4 +311,4 @@ function placeGuess()
 // getAllPastCharactersDialogue();
 // getCharacterDisplayData();
 
-placeGuess();
+// placeGuess();
