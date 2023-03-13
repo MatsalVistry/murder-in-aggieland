@@ -35,6 +35,47 @@
 
             echo json_encode($response);
         }
+        else if($_POST['functionName'] == "checkUserReachedLocation")
+        {
+            $x_cord = $_POST['x_cord'];
+            $y_cord = $_POST['y_cord'];
+            $z_cord = $_POST['z_cord'];
+            $game_id = $_POST['game_id'];
+            $user_id = $_POST['user_id'];
+
+            $query = "SELECT current_priority FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+            $row = pg_fetch_row($result);
+
+            $current_priority = $row[0];
+
+            $query = "SELECT x_coordinate, y_coordinate, z_coordinate FROM character WHERE game_id = '$game_id' AND priority = '$current_priority';";
+            $result = pg_query($dbconn, $query);
+            $row = pg_fetch_row($result);
+
+            $end_x = $row[0];
+            $end_y = $row[1];
+            $end_z = $row[2];
+
+            $response;
+
+            if(abs($x_cord - $end_x) < 10 && abs($y_cord - $end_y) < 10 && abs($z_cord - $end_z) < 10)
+            {
+                $response = array(
+                    'code' => 0,
+                    'reached_location' => true
+                );
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'reached_location' => false
+                );
+            }
+
+            echo json_encode($response);
+        }
     }
     else
     {       

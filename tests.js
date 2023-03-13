@@ -106,9 +106,11 @@ function getInitialGameText()
     });
 }
 
+
 // addUser();
 // verifyCredentials();
 // getCurrentGames();
 // getNotStartedGames();
 
 // enrollUserInGame();
+getInitialGameText();
