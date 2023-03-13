@@ -71,6 +71,23 @@ function getNotStartedGames()
     });
 }
 
+function getFinishedGames()
+{
+    $.ajax({
+        type: "GET",
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        url: "https://murder-in-aggieland.herokuapp.com/API/users.php",
+        data: {
+            functionName: "getFinishedGames",
+            user_id: 1
+        },
+        success: function(response) {
+            console.log("Get Finished Games:");
+            console.log(response);
+        }
+    });
+}
+
 function enrollUserInGame()
 {
     $.ajax({
@@ -80,7 +97,7 @@ function enrollUserInGame()
         data: {
             functionName: "enrollUserInGame",
             user_id: 1,
-            game_id: 1
+            game_id: 3
         },
         success: function(response) {
             console.log("Enroll User In Game:");
@@ -217,12 +234,13 @@ function getCharacterDisplayData()
 }
 
 
-addUser();
+// addUser();
 // verifyCredentials();
 // getCurrentGames();
 // getNotStartedGames();
+// getFinishedGames();
 
-// enrollUserInGame();
+enrollUserInGame();
 // getInitialGameText();
 // checkUserReachedLocation();
 // updateUserGamePriority();

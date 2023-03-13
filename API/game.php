@@ -13,7 +13,7 @@
             $game_id = $_POST['game_id'];
             $current_priority = 1;
 
-            $query = "INSERT INTO user_game_joiner (user_id, game_id, current_priority) VALUES ('$user_id', '$game_id', '$current_priority');";
+            $query = "INSERT INTO user_game_joiner (user_id, game_id, current_priority, is_finished, reached_begin) VALUES ('$user_id', '$game_id', '$current_priority', false, false);";
             $result = pg_query($dbconn, $query);
 
             $response;
