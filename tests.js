@@ -153,4 +153,4 @@ function updateUserGamePriority()
 // enrollUserInGame();
 // getInitialGameText();
 // checkUserReachedLocation();
-updateUserGamePriority();
+// updateUserGamePriority();

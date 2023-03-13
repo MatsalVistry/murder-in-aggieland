@@ -135,6 +135,37 @@
 
             echo json_encode($response);
         }
+        else if($_GET['functionName'] == "getCurrentDestination")
+        {
+            $user_id = $_GET['user_id'];
+            $game_id = $_GET['game_id'];
+
+            $query = "SELECT x_coordinate, y_coordinate, z_coordinate FROM user_game_joiner as ugj WHERE ugj.user_id = '$user_id' AND ugj.game_id = '$game_id' JOIN character as c ON c.game_id = ugj.game_id AND c.priority = ugj.current_priority;";
+            $result = pg_query($dbconn, $query);
+
+            $response;
+
+            if($result)
+            {
+                $row = pg_fetch_row($result);
+                $response = array(
+                    'code' => 0,
+                    'message' => 'Success',
+                    'x_coordinate' => $row[0],
+                    'y_coordinate' => $row[1],
+                    'z_coordinate' => $row[2]
+                );
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'Failed to get current, possibly reached all destinations'
+                );
+            }
+
+            echo json_encode($response);
+        }
     }
 ?>
 
