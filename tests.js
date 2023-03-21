@@ -25,7 +25,7 @@ function addUser()
 
     axios.post('https://murder-in-aggieland.herokuapp.com/API/users.php', {
     functionName: 'addUser',
-    username: 'test',
+    username: 'tes4t',
     email: 'test@gmail.com',
     password: 'test'
     }, {
@@ -68,19 +68,35 @@ function verifyCredentials()
 
 function getCurrentGames()
 {
-    $.ajax({
-        type: "GET",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/users.php",
-        data: {
-            functionName: "getCurrentGames",
-            user_id: 1
-        },
-        success: function(response) {
-            console.log("Get Current Games:");
-            console.log(response);
+    // $.ajax({
+    //     type: "GET",
+    //     headers: {  'Access-Control-Allow-Origin': '*' },
+    //     url: "https://murder-in-aggieland.herokuapp.com/API/users.php",
+    //     data: {
+    //         functionName: "getCurrentGames",
+    //         user_id: 1
+    //     },
+    //     success: function(response) {
+    //         console.log("Get Current Games:");
+    //         console.log(response);
+    //     }
+    // });
+
+    axios.get('https://murder-in-aggieland.herokuapp.com/API/users.php', {
+        functionName: 'getCurrentGames',
+        user_id: 1
+        }, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         }
-    });
+        })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 function getNotStartedGames()
@@ -321,9 +337,9 @@ function placeGuess()
 }
 
 
-addUser();
+// addUser();
 // verifyCredentials();
-// getCurrentGames();
+getCurrentGames();
 // getNotStartedGames();
 // getFinishedGames();
 

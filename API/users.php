@@ -15,11 +15,11 @@
     $is_get = $_SERVER['REQUEST_METHOD'] == 'GET';
     $is_post = $_SERVER['REQUEST_METHOD'] == 'POST';
 
-    $post = file_get_contents('php://input');
-    $post = json_decode($post, true);
-
     if($is_post)
     {
+        $post = file_get_contents('php://input');
+        $post = json_decode($post, true);
+
         if($post['functionName'] == "addUser")
         {
             $username = $post['username'];
@@ -82,9 +82,12 @@
     }
     else
     {       
-        if($_GET['functionName'] == "getCurrentGames")
+        $get = file_get_contents('php://input');
+        $get = json_decode($get, true);
+
+        if($get['functionName'] == "getCurrentGames")
         {
-            $user_id = $_GET['user_id'];
+            $user_id = $get['user_id'];
 
             $query = "SELECT g.game_id, g.game_name, g.game_description FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.game_id WHERE ugj.user_id = '$user_id' AND ugj.is_finished = false;";
             $result = pg_query($dbconn, $query);
@@ -119,9 +122,9 @@
 
             echo json_encode($response);
         }
-        else if($_GET['functionName'] == "getNotStartedGames")
+        else if($get['functionName'] == "getNotStartedGames")
         {
-            $user_id = $_GET['user_id'];
+            $user_id = $get['user_id'];
 
             $query = "SELECT g.game_id, g.game_name, g.game_description FROM game as g WHERE g.game_id NOT IN (SELECT ugj.game_id FROM user_game_joiner as ugj WHERE ugj.user_id = '$user_id');";
             $result = pg_query($dbconn, $query);
@@ -156,9 +159,9 @@
 
             echo json_encode($response);
         }
-        else if($_GET['functionName'] == "getFinishedGames")
+        else if($get['functionName'] == "getFinishedGames")
         {
-            $user_id = $_GET['user_id'];
+            $user_id = $get['user_id'];
 
             $query = "SELECT g.game_id, g.game_name, g.game_description FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.game_id WHERE ugj.user_id = '$user_id' AND ugj.is_finished = true;";
             $result = pg_query($dbconn, $query);
