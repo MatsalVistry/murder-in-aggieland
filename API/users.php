@@ -16,8 +16,8 @@
     $is_post = $_SERVER['REQUEST_METHOD'] == 'POST';
 
     $post = file_get_contents('php://input');
-    // echo json_encode($_SERVER['REQUEST_METHOD']." ".$_POST['functionName']);
-    echo json_encode('Post data: '.$post);
+    $post = json_decode($post, true);
+    echo json_encode($post['functionName']);
 
     // if($is_post)
     // {
