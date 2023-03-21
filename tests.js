@@ -30,7 +30,10 @@ function addUser()
         'Access-Control-Allow-Origin': '*'
     },
     body: JSON.stringify({
-
+        functionName: 'addUser',
+        username: 'test',
+        email: 'test@gmail.com',
+        password: 'test'
     })
     })
     .then(response => {
