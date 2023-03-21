@@ -7,7 +7,8 @@
 
     if($is_post)
     {
-
+        $post = file_get_contents('php://input');
+        $post = json_decode($post, true);
     }
     else
     {       

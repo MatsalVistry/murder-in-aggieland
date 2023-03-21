@@ -273,20 +273,25 @@ function getCurrentDestination()
 
 function getCurrentCharacterDialogue()
 {
-    $.ajax({
-        type: "GET",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/character.php",
-        data: {
-            functionName: "getCurrentCharacterDialogue",
-            game_id: 1,
-            user_id: 1
-        },
-        success: function(response) {
-            console.log("Get Current Character Dialogue:");
-            console.log(response);
-        }
+    const params = new URLSearchParams(
+    {
+        functionName: "getCurrentCharacterDialogue",
+        game_id: 1,
+        user_id: 1
     });
+        
+    fetch(`https://murder-in-aggieland.herokuapp.com/API/character.php?${params}`, 
+    {
+        method: 'GET',
+        headers: 
+        {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function getAllPastCharactersDialogue()
@@ -326,21 +331,25 @@ function getCharacterDisplayData()
 
 function placeGuess()
 {
-    $.ajax({
-        type: "POST",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
-        data: {
+    fetch('https://murder-in-aggieland.herokuapp.com/API/game.php', 
+    {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(
+        {
             functionName: "placeGuess",
             user_id: 1,
             game_id: 1,
             character_guess_id: 1
-        },
-        success: function(response) {
-            console.log("Place Guess:");
-            console.log(response);
-        }
-    });
+        })
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 
