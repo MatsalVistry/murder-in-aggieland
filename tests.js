@@ -24,23 +24,22 @@ function addUser()
     // write fetch request
 
     axios.post('https://murder-in-aggieland.herokuapp.com/API/users.php', {
-  functionName: 'addUser',
-  username: 'test',
-  email: 'test@gmail.com',
-  password: 'test'
-}, {
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-  }
-})
-  .then(response => {
-    console.log(response);
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+    functionName: 'addUser',
+    username: 'test',
+    email: 'test@gmail.com',
+    password: 'test'
+    }, {
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    }
+    })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 
 
 
