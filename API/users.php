@@ -15,188 +15,190 @@
     $is_get = $_SERVER['REQUEST_METHOD'] == 'GET';
     $is_post = $_SERVER['REQUEST_METHOD'] == 'POST';
 
-    if($is_post)
-    {
-        $post = file_get_contents('php://input');
-        $post = json_decode($post, true);
+    echo json_encode('Get Data: '. $_GET);
 
-        if($post['functionName'] == "addUser")
-        {
-            $username = $post['username'];
-            $email = $post['email'];
-            $password = $post['password'];
+    // if($is_post)
+    // {
+    //     $post = file_get_contents('php://input');
+    //     $post = json_decode($post, true);
 
-            $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password');";
-            $result = pg_query($dbconn, $query);
+    //     if($post['functionName'] == "addUser")
+    //     {
+    //         $username = $post['username'];
+    //         $email = $post['email'];
+    //         $password = $post['password'];
+
+    //         $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password');";
+    //         $result = pg_query($dbconn, $query);
             
-            $response;
+    //         $response;
 
-            if($result)
-            {
-                $response = array(
-                    'code' => 0,
-                    'message' => 'Success'
-                );
-            }
-            else
-            {
-                $response = array(
-                    'code' => 1,
-                    'message' => 'Failed to add user'
-                );
-            }
+    //         if($result)
+    //         {
+    //             $response = array(
+    //                 'code' => 0,
+    //                 'message' => 'Success'
+    //             );
+    //         }
+    //         else
+    //         {
+    //             $response = array(
+    //                 'code' => 1,
+    //                 'message' => 'Failed to add user'
+    //             );
+    //         }
 
-            echo json_encode($response);
-        }
-        else if($post['functionName'] == "verifyCredentials")
-        {
-            $username = $post['username'];
-            $password = $post['password'];
+    //         echo json_encode($response);
+    //     }
+    //     else if($post['functionName'] == "verifyCredentials")
+    //     {
+    //         $username = $post['username'];
+    //         $password = $post['password'];
 
-            $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password';";
-            $result = pg_query($dbconn, $query);
-            $row = pg_fetch_row($result);
+    //         $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password';";
+    //         $result = pg_query($dbconn, $query);
+    //         $row = pg_fetch_row($result);
 
-            // return json object with code and message, code 0 = success, code 1 = failure, also return user id
+    //         // return json object with code and message, code 0 = success, code 1 = failure, also return user id
 
-            $response;
+    //         $response;
 
-            if($row)
-            {
-                $response = array(
-                    'code' => 0,
-                    'message' => 'Success',
-                    'user_id' => $row[0]
-                );
-            }
-            else
-            {
-                $response = array(
-                    'code' => 1,
-                    'message' => 'Failed to verify credentials'
-                );
-            }
+    //         if($row)
+    //         {
+    //             $response = array(
+    //                 'code' => 0,
+    //                 'message' => 'Success',
+    //                 'user_id' => $row[0]
+    //             );
+    //         }
+    //         else
+    //         {
+    //             $response = array(
+    //                 'code' => 1,
+    //                 'message' => 'Failed to verify credentials'
+    //             );
+    //         }
 
-            echo json_encode($response);
-        }
-    }
-    else
-    {       
-        $get = file_get_contents('php://input');
-        $get = json_decode($get, true);
+    //         echo json_encode($response);
+    //     }
+    // }
+    // else
+    // {       
+    //     $get = file_get_contents('php://input');
+    //     $get = json_decode($get, true);
 
-        if($get['functionName'] == "getCurrentGames")
-        {
-            $user_id = $get['user_id'];
+    //     if($get['functionName'] == "getCurrentGames")
+    //     {
+    //         $user_id = $get['user_id'];
 
-            $query = "SELECT g.game_id, g.game_name, g.game_description FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.game_id WHERE ugj.user_id = '$user_id' AND ugj.is_finished = false;";
-            $result = pg_query($dbconn, $query);
-            $rows = pg_fetch_all($result);
+    //         $query = "SELECT g.game_id, g.game_name, g.game_description FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.game_id WHERE ugj.user_id = '$user_id' AND ugj.is_finished = false;";
+    //         $result = pg_query($dbconn, $query);
+    //         $rows = pg_fetch_all($result);
 
-            $response;
+    //         $response;
 
-            if($rows)
-            {
-                $response = array(
-                    'code' => 0,
-                    'message' => 'Success',
-                    'game_ids' => array(),
-                    'game_names' => array(),
-                    'game_descriptions' => array(),
-                );
+    //         if($rows)
+    //         {
+    //             $response = array(
+    //                 'code' => 0,
+    //                 'message' => 'Success',
+    //                 'game_ids' => array(),
+    //                 'game_names' => array(),
+    //                 'game_descriptions' => array(),
+    //             );
 
-                foreach($rows as $row)
-                {
-                    array_push($response['game_ids'], $row['game_id']);
-                    array_push($response['game_names'], $row['game_name']);
-                    array_push($response['game_descriptions'], $row['game_description']);
-                }
-            }
-            else
-            {
-                $response = array(
-                    'code' => 1,
-                    'message' => 'Failed to get current games'
-                );
-            }
+    //             foreach($rows as $row)
+    //             {
+    //                 array_push($response['game_ids'], $row['game_id']);
+    //                 array_push($response['game_names'], $row['game_name']);
+    //                 array_push($response['game_descriptions'], $row['game_description']);
+    //             }
+    //         }
+    //         else
+    //         {
+    //             $response = array(
+    //                 'code' => 1,
+    //                 'message' => 'Failed to get current games'
+    //             );
+    //         }
 
-            echo json_encode($response);
-        }
-        else if($get['functionName'] == "getNotStartedGames")
-        {
-            $user_id = $get['user_id'];
+    //         echo json_encode($response);
+    //     }
+    //     else if($get['functionName'] == "getNotStartedGames")
+    //     {
+    //         $user_id = $get['user_id'];
 
-            $query = "SELECT g.game_id, g.game_name, g.game_description FROM game as g WHERE g.game_id NOT IN (SELECT ugj.game_id FROM user_game_joiner as ugj WHERE ugj.user_id = '$user_id');";
-            $result = pg_query($dbconn, $query);
-            $rows = pg_fetch_all($result);
+    //         $query = "SELECT g.game_id, g.game_name, g.game_description FROM game as g WHERE g.game_id NOT IN (SELECT ugj.game_id FROM user_game_joiner as ugj WHERE ugj.user_id = '$user_id');";
+    //         $result = pg_query($dbconn, $query);
+    //         $rows = pg_fetch_all($result);
 
-            $response;
+    //         $response;
 
-            if($rows)
-            {
-                $response = array(
-                    'code' => 0,
-                    'message' => 'Success',
-                    'game_ids' => array(),
-                    'game_names' => array(),
-                    'game_descriptions' => array()
-                );
+    //         if($rows)
+    //         {
+    //             $response = array(
+    //                 'code' => 0,
+    //                 'message' => 'Success',
+    //                 'game_ids' => array(),
+    //                 'game_names' => array(),
+    //                 'game_descriptions' => array()
+    //             );
 
-                foreach($rows as $row)
-                {
-                    array_push($response['game_ids'], $row['game_id']);
-                    array_push($response['game_names'], $row['game_name']);
-                    array_push($response['game_descriptions'], $row['game_description']);
-                }
-            }
-            else
-            {
-                $response = array(
-                    'code' => 1,
-                    'message' => 'Failed to get not started games'
-                );
-            }
+    //             foreach($rows as $row)
+    //             {
+    //                 array_push($response['game_ids'], $row['game_id']);
+    //                 array_push($response['game_names'], $row['game_name']);
+    //                 array_push($response['game_descriptions'], $row['game_description']);
+    //             }
+    //         }
+    //         else
+    //         {
+    //             $response = array(
+    //                 'code' => 1,
+    //                 'message' => 'Failed to get not started games'
+    //             );
+    //         }
 
-            echo json_encode($response);
-        }
-        else if($get['functionName'] == "getFinishedGames")
-        {
-            $user_id = $get['user_id'];
+    //         echo json_encode($response);
+    //     }
+    //     else if($get['functionName'] == "getFinishedGames")
+    //     {
+    //         $user_id = $get['user_id'];
 
-            $query = "SELECT g.game_id, g.game_name, g.game_description FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.game_id WHERE ugj.user_id = '$user_id' AND ugj.is_finished = true;";
-            $result = pg_query($dbconn, $query);
-            $rows = pg_fetch_all($result);
+    //         $query = "SELECT g.game_id, g.game_name, g.game_description FROM user_game_joiner as ugj INNER JOIN game as g ON ugj.game_id = g.game_id WHERE ugj.user_id = '$user_id' AND ugj.is_finished = true;";
+    //         $result = pg_query($dbconn, $query);
+    //         $rows = pg_fetch_all($result);
 
-            $response;
+    //         $response;
 
-            if($rows)
-            {
-                $response = array(
-                    'code' => 0,
-                    'message' => 'Success',
-                    'game_ids' => array(),
-                    'game_names' => array(),
-                    'game_descriptions' => array()
-                );
+    //         if($rows)
+    //         {
+    //             $response = array(
+    //                 'code' => 0,
+    //                 'message' => 'Success',
+    //                 'game_ids' => array(),
+    //                 'game_names' => array(),
+    //                 'game_descriptions' => array()
+    //             );
 
-                foreach($rows as $row)
-                {
-                    array_push($response['game_ids'], $row['game_id']);
-                    array_push($response['game_names'], $row['game_name']);
-                    array_push($response['game_descriptions'], $row['game_description']);
-                }
-            }
-            else
-            {
-                $response = array(
-                    'code' => 1,
-                    'message' => 'Failed to get finished games'
-                );
-            }
+    //             foreach($rows as $row)
+    //             {
+    //                 array_push($response['game_ids'], $row['game_id']);
+    //                 array_push($response['game_names'], $row['game_name']);
+    //                 array_push($response['game_descriptions'], $row['game_description']);
+    //             }
+    //         }
+    //         else
+    //         {
+    //             $response = array(
+    //                 'code' => 1,
+    //                 'message' => 'Failed to get finished games'
+    //             );
+    //         }
 
-            echo json_encode($response);
-        }
+    //         echo json_encode($response);
+    //     }
 
-    }
+    // }
 ?>
 
