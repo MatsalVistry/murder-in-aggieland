@@ -368,7 +368,7 @@ function placeGuess()
 // updateUserGamePriority();
 // getCurrentDestination();
 
-// getCurrentCharacterDialogue();
+getCurrentCharacterDialogue();
 // getAllPastCharactersDialogue();
 // getCharacterDisplayData();
 
