@@ -15,45 +15,47 @@
     $is_get = $_SERVER['REQUEST_METHOD'] == 'GET';
     $is_post = $_SERVER['REQUEST_METHOD'] == 'POST';
 
-    if($is_post)
-    {
-        if($_POST['functionName'] == "addUser")
-        {
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+    echo json_encode($_SERVER['REQUEST_METHOD']);
 
-            $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password');";
-            $result = pg_query($dbconn, $query);
+    // if($is_post)
+    // {
+    //     if($_POST['functionName'] == "addUser")
+    //     {
+    //         $username = $_POST['username'];
+    //         $email = $_POST['email'];
+    //         $password = $_POST['password'];
+
+    //         $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password');";
+    //         $result = pg_query($dbconn, $query);
             
-            $response;
+    //         $response;
 
-            if($result)
-            {
-                $response = array(
-                    'code' => 0,
-                    'message' => 'Success'
-                );
-            }
-            else
-            {
-                $response = array(
-                    'code' => 1,
-                    'message' => 'Failed to add user'
-                );
-            }
+    //         if($result)
+    //         {
+    //             $response = array(
+    //                 'code' => 0,
+    //                 'message' => 'Success'
+    //             );
+    //         }
+    //         else
+    //         {
+    //             $response = array(
+    //                 'code' => 1,
+    //                 'message' => 'Failed to add user'
+    //             );
+    //         }
 
-            echo json_encode($response);
-        }
-    }
-    else
-    {
-        $response = array(
-            'code' => 1,
-            'message' => 'Invalid request'
-        );
+    //         echo json_encode($response);
+    //     }
+    // }
+    // else
+    // {
+    //     $response = array(
+    //         'code' => 1,
+    //         'message' => 'Invalid request'
+    //     );
 
-        echo json_encode($response);
-    }
+    //     echo json_encode($response);
+    // }
 ?>
 
