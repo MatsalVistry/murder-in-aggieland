@@ -15,7 +15,7 @@
     $is_get = $_SERVER['REQUEST_METHOD'] == 'GET';
     $is_post = $_SERVER['REQUEST_METHOD'] == 'POST';
 
-    echo json_encode('Get Data: '. $_GET);
+    echo json_encode($_GET);
 
     // if($is_post)
     // {

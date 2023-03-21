@@ -82,21 +82,28 @@ function getCurrentGames()
     //     }
     // });
 
-    axios.get('https://murder-in-aggieland.herokuapp.com/API/users.php', {
-        functionName: 'getCurrentGames',
-        user_id: 1
-        }, {
-        headers: {
+    axios.get('https://murder-in-aggieland.herokuapp.com/API/users.php', 
+    {
+        params: {
+            functionName: 'getCurrentGames',
+            user_id: 1
+        }
+    }, 
+    {
+        headers: 
+        {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
         }
-        })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    })
+
+
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 
 function getNotStartedGames()
