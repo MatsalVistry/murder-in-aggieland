@@ -2,142 +2,112 @@ console.log('tests.js');
 
 function addUser()
 {
-    // $.ajax({
-    //     type: "POST",
-    //     headers: {
-    //             'Content-Type': 'application/json',
-    //             'Access-Control-Allow-Origin': '*'
-    //           },
-    //     url: "https://murder-in-aggieland.herokuapp.com/API/users.php",
-    //     data: {
-    //         functionName: "addUser",
-    //         username: "test",
-    //         email: "test@gmail.com",
-    //         password: "test",
-    //     },
-    //     success: function(response) {
-    //         console.log("Add User:");
-    //         console.log(response);
-    //     }
-    // });
-
-    // write fetch request
-
-    axios.post('https://murder-in-aggieland.herokuapp.com/API/users.php', {
-    functionName: 'addUser',
-    username: 'tes4t',
-    email: 'test@gmail.com',
-    password: 'test'
-    }, {
-    headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-    }
+    fetch('https://murder-in-aggieland.herokuapp.com/API/users.php', 
+    {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(
+        {
+          functionName: 'addUser',
+          username: 'tes4t',
+          email: 'test@gmail.com',
+          password: 'test'
+        })
     })
-    .then(response => {
-        console.log(response.data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-
-
-
-
-
-
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function verifyCredentials()
 {
-    $.ajax({
-        type: "POST",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/users.php",
-        data: {
+    fetch('https://murder-in-aggieland.herokuapp.com/API/users.php', 
+    {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(
+        {
             functionName: "verifyCredentials",
             username: "test",
             password: "test",
-        },
-        success: function(response) {
-            console.log("Verify Credentials:");
-            console.log(response);
-        }
-    });
-}
+        })
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});}
 
 function getCurrentGames()
 {
-    // $.ajax({
-    //     type: "GET",
-    //     headers: {  'Access-Control-Allow-Origin': '*' },
-    //     url: "https://murder-in-aggieland.herokuapp.com/API/users.php",
-    //     data: {
-    //         functionName: "getCurrentGames",
-    //         user_id: 1
-    //     },
-    //     success: function(response) {
-    //         console.log("Get Current Games:");
-    //         console.log(response);
-    //     }
-    // });
-
-    axios.get('https://murder-in-aggieland.herokuapp.com/API/users.php', 
+    const params = new URLSearchParams(
     {
-        params: {
-            functionName: 'getCurrentGames',
-            user_id: 1
-        }
-    }, 
+        functionName: 'getCurrentGames',
+        user_id: 1
+    });
+      
+    fetch(`https://murder-in-aggieland.herokuapp.com/API/users.php?${params}`, 
     {
+        method: 'GET',
         headers: 
         {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
         }
     })
-
-
-    .then(response => {
-        console.log(response.data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function getNotStartedGames()
 {
-    $.ajax({
-        type: "GET",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/users.php",
-        data: {
-            functionName: "getNotStartedGames",
-            user_id: 1
-        },
-        success: function(response) {
-            console.log("Get Not Started Games:");
-            console.log(response);
-        }
+    const params = new URLSearchParams(
+    {
+        functionName: "getNotStartedGames",
+        user_id: 1
     });
+        
+    fetch(`https://murder-in-aggieland.herokuapp.com/API/users.php?${params}`, 
+    {
+        method: 'GET',
+        headers: 
+        {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function getFinishedGames()
 {
-    $.ajax({
-        type: "GET",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/users.php",
-        data: {
-            functionName: "getFinishedGames",
-            user_id: 1
-        },
-        success: function(response) {
-            console.log("Get Finished Games:");
-            console.log(response);
-        }
+    const params = new URLSearchParams(
+    {
+        functionName: "getFinishedGames",
+        user_id: 1
     });
+        
+    fetch(`https://murder-in-aggieland.herokuapp.com/API/users.php?${params}`, 
+    {
+        method: 'GET',
+        headers: 
+        {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function enrollUserInGame()
@@ -346,7 +316,7 @@ function placeGuess()
 
 // addUser();
 // verifyCredentials();
-getCurrentGames();
+// getCurrentGames();
 // getNotStartedGames();
 // getFinishedGames();
 
