@@ -296,37 +296,47 @@ function getCurrentCharacterDialogue()
 
 function getAllPastCharactersDialogue()
 {
-    $.ajax({
-        type: "GET",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/character.php",
-        data: {
-            functionName: "getAllPastCharactersDialogue",
-            game_id: 1,
-            user_id: 1
-        },
-        success: function(response) {
-            console.log("Get All Past Characters Dialogue:");
-            console.log(response);
-        }
+    const params = new URLSearchParams(
+    {
+        functionName: "getAllPastCharactersDialogue",
+        game_id: 1,
+        user_id: 1
     });
+        
+    fetch(`https://murder-in-aggieland.herokuapp.com/API/character.php?${params}`, 
+    {
+        method: 'GET',
+        headers: 
+        {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function getCharacterDisplayData()
 {
-    $.ajax({
-        type: "GET",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/character.php",
-        data: {
-            functionName: "getCharacterDisplayData",
-            game_id: 1
-        },
-        success: function(response) {
-            console.log("Get Character Display Data:");
-            console.log(response);
-        }
+    const params = new URLSearchParams(
+    {
+        functionName: "getCharacterDisplayData",
+        game_id: 1
     });
+        
+    fetch(`https://murder-in-aggieland.herokuapp.com/API/character.php?${params}`, 
+    {
+        method: 'GET',
+        headers: 
+        {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function placeGuess()
@@ -344,7 +354,7 @@ function placeGuess()
             functionName: "placeGuess",
             user_id: 1,
             game_id: 1,
-            character_guess_id: 1
+            character_guess_id: 2
         })
     })
     .then(response => response.json())
@@ -368,7 +378,7 @@ function placeGuess()
 // updateUserGamePriority();
 // getCurrentDestination();
 
-getCurrentCharacterDialogue();
+// getCurrentCharacterDialogue();
 // getAllPastCharactersDialogue();
 // getCharacterDisplayData();
 
