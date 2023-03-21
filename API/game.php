@@ -1,5 +1,14 @@
 <?php
-
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') 
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Headers: Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type');
+        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+        exit;
+    }
+        
+    header('Access-Control-Allow-Origin: *');
+    header('Content-Type: application/json');
    
     $dbconn = pg_connect("host=ec2-34-226-11-94.compute-1.amazonaws.com port=5432 dbname=d3pn0nhl7uusfl user=frlqbtgkemxcet password=d90286b7c870a5195ec5709a37a460b82d3ff8d339720460cd43d9192a7874c1");
 
@@ -8,10 +17,13 @@
 
     if($is_post)
     {
-        if($_POST['functionName'] == "enrollUserInGame")
+        $post = file_get_contents('php://input');
+        $post = json_decode($post, true);
+
+        if($post['functionName'] == "enrollUserInGame")
         {
-            $user_id = $_POST['user_id'];
-            $game_id = $_POST['game_id'];
+            $user_id = $post['user_id'];
+            $game_id = $post['game_id'];
             $current_priority = 1;
 
             $query = "INSERT INTO user_game_joiner (user_id, game_id, current_priority, is_finished, reached_begin) VALUES ('$user_id', '$game_id', '$current_priority', false, false);";
@@ -36,13 +48,13 @@
 
             echo json_encode($response);
         }
-        else if($_POST['functionName'] == "checkUserReachedLocation")
+        else if($post['functionName'] == "checkUserReachedLocation")
         {
-            $x_cord = $_POST['x_cord'];
-            $y_cord = $_POST['y_cord'];
-            $z_cord = $_POST['z_cord'];
-            $game_id = $_POST['game_id'];
-            $user_id = $_POST['user_id'];
+            $x_cord = $post['x_cord'];
+            $y_cord = $post['y_cord'];
+            $z_cord = $post['z_cord'];
+            $game_id = $post['game_id'];
+            $user_id = $post['user_id'];
 
             $query = "SELECT current_priority FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
@@ -77,13 +89,13 @@
 
             echo json_encode($response);
         }
-        else if($_POST['functionName'] == "checkUserReachedStartLocation")
+        else if($post['functionName'] == "checkUserReachedStartLocation")
         {
-            $x_cord = $_POST['x_cord'];
-            $y_cord = $_POST['y_cord'];
-            $z_cord = $_POST['z_cord'];
-            $game_id = $_POST['game_id'];
-            $user_id = $_POST['user_id'];
+            $x_cord = $post['x_cord'];
+            $y_cord = $post['y_cord'];
+            $z_cord = $post['z_cord'];
+            $game_id = $post['game_id'];
+            $user_id = $post['user_id'];
 
             $query = "SELECT begin_x, begin_y, begin_z FROM game WHERE game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
@@ -115,10 +127,10 @@
 
             echo json_encode($response);
         }
-        else if($_POST['functionName'] == "checkHasGameStarted")
+        else if($post['functionName'] == "checkHasGameStarted")
         {
-            $user_id = $_POST['user_id'];
-            $game_id = $_POST['game_id'];
+            $user_id = $post['user_id'];
+            $game_id = $post['game_id'];
 
             $query = "SELECT reached_begin FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
@@ -145,10 +157,10 @@
 
             echo json_encode($response);
         }
-        else if($_POST['functionName'] == "updateUserGamePriority")
+        else if($post['functionName'] == "updateUserGamePriority")
         {
-            $user_id = $_POST['user_id'];
-            $game_id = $_POST['game_id'];
+            $user_id = $post['user_id'];
+            $game_id = $post['game_id'];
 
             // increment current_priority in user_game_joiner where user_id = $user_id and game_id = $game_id
             $query = "UPDATE user_game_joiner SET current_priority = current_priority + 1 WHERE user_id = '$user_id' AND game_id = '$game_id';";
@@ -173,11 +185,11 @@
 
             echo json_encode($response);
         }
-        else if($_POST['functionName'] == "placeGuess")
+        else if($post['functionName'] == "placeGuess")
         {
-            $user_id = $_POST['user_id'];
-            $game_id = $_POST['game_id'];
-            $character_guess_id = $_POST['character_guess_id'];
+            $user_id = $post['user_id'];
+            $game_id = $post['game_id'];
+            $character_guess_id = $post['character_guess_id'];
 
             $query = "SELECT is_killer FROM character WHERE game_id = '$game_id' AND character_id = '$character_guess_id';";
             $result = pg_query($dbconn, $query);
