@@ -112,133 +112,163 @@ function getFinishedGames()
 
 function enrollUserInGame()
 {
-    $.ajax({
-        type: "POST",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
-        data: {
+    fetch('https://murder-in-aggieland.herokuapp.com/API/game.php', 
+    {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(
+        {
             functionName: "enrollUserInGame",
             user_id: 1,
             game_id: 3
-        },
-        success: function(response) {
-            console.log("Enroll User In Game:");
-            console.log(response);
-        }
-    });
+        })
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function getInitialGameText()
 {
-    $.ajax({
-        type: "GET",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
-        data: {
-            functionName: "getInitialGameText",
-            game_id: 1
-        },
-        success: function(response) {
-            console.log("Get Initial Game Text:");
-            console.log(response);
-        }
+    const params = new URLSearchParams(
+    {
+        functionName: "getInitialGameText",
+        game_id: 1
     });
+        
+    fetch(`https://murder-in-aggieland.herokuapp.com/API/game.php?${params}`, 
+    {
+        method: 'GET',
+        headers: 
+        {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function checkUserReachedLocation()
 {
-    $.ajax({
-        type: "POST",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
-        data: {
+    fetch('https://murder-in-aggieland.herokuapp.com/API/game.php', 
+    {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(
+        {
             functionName: "checkUserReachedLocation",
-            x_cord: 100,
-            y_cord: 100,
-            z_cord: 100,
+            x_cord: 300,
+            y_cord: 300,
+            z_cord: 300,
             game_id: 1,
             user_id: 1
-        },
-        success: function(response) {
-            console.log("Check User Reached Location:");
-            console.log(response);
-        }
-    });
+        })
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function checkUserReachedStartLocation()
 {
-    $.ajax({
-        type: "POST",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
-        data: {
+    fetch('https://murder-in-aggieland.herokuapp.com/API/game.php', 
+    {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(
+        {
             functionName: "checkUserReachedStartLocation",
-            x_cord: 0,
-            y_cord: 0,
-            z_cord: 0,
+            x_cord: 300,
+            y_cord: 300,
+            z_cord: 300,
             game_id: 1,
             user_id: 1
-        },
-        success: function(response) {
-            console.log("Check User Reached Start Location:");
-            console.log(response);
-        }
-    });
+        })
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function checkHasGameStarted()
 {
-    $.ajax({
-        type: "POST",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
-        data: {
+    fetch('https://murder-in-aggieland.herokuapp.com/API/game.php', 
+    {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(
+        {
             functionName: "checkHasGameStarted",
             game_id: 1,
             user_id: 1
-        },
-        success: function(response) {
-            console.log("Check Has Game Started:");
-            console.log(response);
-        }
-    });
+        })
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function updateUserGamePriority()
 {
-    $.ajax({
-        type: "POST",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
-        data: {
+    fetch('https://murder-in-aggieland.herokuapp.com/API/game.php', 
+    {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(
+        {
             functionName: "updateUserGamePriority",
             game_id: 1,
             user_id: 1
-        },
-        success: function(response) {
-            console.log("Update User Game Priority:");
-            console.log(response);
-        }
-    });
+        })
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function getCurrentDestination()
 {
-    $.ajax({
-        type: "GET",
-        headers: {  'Access-Control-Allow-Origin': '*' },
-        url: "https://murder-in-aggieland.herokuapp.com/API/game.php",
-        data: {
-            functionName: "getCurrentDestination",
-            game_id: 1,
-            user_id: 1
-        },
-        success: function(response) {
-            console.log("Get Current Destination:");
-            console.log(response);
-        }
+    const params = new URLSearchParams(
+    {
+        functionName: "getCurrentDestination",
+        game_id: 1,
+        user_id: 1
     });
+        
+    fetch(`https://murder-in-aggieland.herokuapp.com/API/game.php?${params}`, 
+    {
+        method: 'GET',
+        headers: 
+        {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
 }
 
 function getCurrentCharacterDialogue()
