@@ -23,24 +23,24 @@ function addUser()
 
     // write fetch request
 
-    fetch('https://murder-in-aggieland.herokuapp.com/API/users.php', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-  },
-  body: JSON.stringify({
-    functionName: "addUser",
-    username: "test",
-    email: "test@gmail.com",
-    password: "test",
-  })
-})
-.then(response => {
-  console.log("Add User:");
-  console.log(response);
-})
-.catch(error => console.error(error));
+        fetch('https://murder-in-aggieland.herokuapp.com/API/users.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    },
+    body: JSON.stringify({
+        functionName: "addUser",
+        username: "test",
+        email: "test@gmail.com",
+        password: "test",
+    })
+    })
+    .then(response => {
+    console.log("Add User:");
+    console.log(response);
+    })
+    .catch(error => console.error(error));
 }
 
 function verifyCredentials()
