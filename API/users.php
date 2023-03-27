@@ -26,6 +26,22 @@
             $email = $post['email'];
             $password = $post['password'];
 
+            // check if username already exists
+            $query = "SELECT * FROM users WHERE username = '$username';";
+            $result = pg_query($dbconn, $query);
+            $row = pg_fetch_row($result);
+
+            if($row)
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'Username already exists'
+                );
+
+                echo json_encode($response);
+                exit;
+            }
+
             $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password');";
             $result = pg_query($dbconn, $query);
             
