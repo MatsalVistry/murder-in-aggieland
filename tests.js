@@ -392,7 +392,7 @@ function placeGuess()
 // getFinishedGames();
 
 // enrollUserInGame();
-unenrollUserFromGame();
+// unenrollUserFromGame();
 // getInitialGameText();
 // checkHasGameStarted();
 // checkUserReachedStartLocation();
