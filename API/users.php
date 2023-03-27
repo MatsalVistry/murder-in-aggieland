@@ -66,7 +66,8 @@
                 $response = array(
                     'code' => 0,
                     'message' => 'Success',
-                    'user_id' => $row[0]
+                    'user_id' => $row[0],
+                    'username' => $row[1],
                 );
             }
             else

@@ -36,8 +36,8 @@ function verifyCredentials()
         body: JSON.stringify(
         {
             functionName: "verifyCredentials",
-            username: "test",
-            password: "test",
+            username: "Test",
+            password: "Test",
         })
     })
     .then(response => response.json())
@@ -364,7 +364,7 @@ function placeGuess()
 
 
 // addUser();
-// verifyCredentials();
+verifyCredentials();
 // getCurrentGames();
 // getNotStartedGames();
 // getFinishedGames();
