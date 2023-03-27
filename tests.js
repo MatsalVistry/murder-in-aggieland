@@ -124,7 +124,7 @@ function enrollUserInGame()
         {
             functionName: "enrollUserInGame",
             user_id: 1,
-            game_id: 3
+            game_id: 2
         })
     })
     .then(response => response.json())

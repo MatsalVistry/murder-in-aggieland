@@ -87,6 +87,8 @@
                     'message' => 'Failed to unenroll user from game'
                 );
             }
+
+            echo json_encode($response);
         }
         else if($post['functionName'] == "checkUserReachedLocation")
         {
