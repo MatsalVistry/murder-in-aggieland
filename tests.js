@@ -13,9 +13,9 @@ function addUser()
         body: JSON.stringify(
         {
           functionName: 'addUser',
-          username: 'tes4t',
-          email: 'test@gmail.com',
-          password: 'test'
+          username: 'hello',
+          email: '1',
+          password: '1'
         })
     })
     .then(response => response.json())
@@ -125,6 +125,28 @@ function enrollUserInGame()
             functionName: "enrollUserInGame",
             user_id: 1,
             game_id: 3
+        })
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
+}
+
+function unenrollUserFromGame()
+{
+    fetch('https://murder-in-aggieland.herokuapp.com/API/game.php', 
+    {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(
+        {
+            functionName: "unenrollUserFromGame",
+            user_id: 1,
+            game_id: 2
         })
     })
     .then(response => response.json())
@@ -364,12 +386,13 @@ function placeGuess()
 
 
 // addUser();
-verifyCredentials();
+// verifyCredentials();
 // getCurrentGames();
 // getNotStartedGames();
 // getFinishedGames();
 
 // enrollUserInGame();
+unenrollUserFromGame();
 // getInitialGameText();
 // checkHasGameStarted();
 // checkUserReachedStartLocation();

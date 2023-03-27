@@ -26,6 +26,21 @@
             $game_id = $post['game_id'];
             $current_priority = 1;
 
+            $query = "SELECT * FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+            $row = pg_fetch_row($result);
+
+            if($row)
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'User already enrolled in game'
+                );
+
+                echo json_encode($response);
+                exit;
+            }
+
             $query = "INSERT INTO user_game_joiner (user_id, game_id, current_priority, is_finished, reached_begin) VALUES ('$user_id', '$game_id', '$current_priority', false, false);";
             $result = pg_query($dbconn, $query);
 
@@ -47,6 +62,31 @@
             }
 
             echo json_encode($response);
+        }
+        else if($post['functionName'] == "unenrollUserFromGame")
+        {
+            $user_id = $post['user_id'];
+            $game_id = $post['game_id'];
+
+            $query = "DELETE FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+
+            $response;
+
+            if($result)
+            {
+                $response = array(
+                    'code' => 0,
+                    'message' => 'Success'
+                );
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'Failed to unenroll user from game'
+                );
+            }
         }
         else if($post['functionName'] == "checkUserReachedLocation")
         {
