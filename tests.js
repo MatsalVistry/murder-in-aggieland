@@ -293,6 +293,28 @@ function getCurrentDestination()
     .catch(error => {console.error('Error:', error);});
 }
 
+function getStartDestination()
+{
+    const params = new URLSearchParams(
+    {
+        functionName: "getStartDestination",
+        game_id: 1
+    });
+        
+    fetch(`https://murder-in-aggieland.herokuapp.com/API/game.php?${params}`, 
+    {
+        method: 'GET',
+        headers: 
+        {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
+}
+
 function getCurrentCharacterDialogue()
 {
     const params = new URLSearchParams(
@@ -400,6 +422,7 @@ function placeGuess()
 // checkUserReachedLocation();
 // updateUserGamePriority();
 // getCurrentDestination();
+// getStartDestination();
 
 // getCurrentCharacterDialogue();
 // getAllPastCharactersDialogue();
