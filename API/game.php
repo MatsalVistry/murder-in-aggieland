@@ -333,6 +333,35 @@
 
             echo json_encode($response);
         }
+        else if($_GET['functionName'] == "getStartDestination")
+        {
+            $game_id = $_GET['game_id'];
+
+            $query = "SELECT begin_x, begin_y, begin_z FROM game WHERE game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+
+            $response;
+
+            if($row = pg_fetch_row($result))
+            {
+                $response = array(
+                    'code' => 0,
+                    'message' => 'Success',
+                    'x_coordinate' => $row[0],
+                    'y_coordinate' => $row[1],
+                    'z_coordinate' => $row[2]
+                );
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'Failed to get start location.'
+                );
+            }
+
+            echo json_encode($response);
+        }
     }
 ?>
 
