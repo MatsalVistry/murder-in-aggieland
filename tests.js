@@ -404,6 +404,30 @@ function placeGuess()
     .catch(error => {console.error('Error:', error);});
 }
 
+function getCurrentGamePriority()
+{
+    const params = new URLSearchParams(
+    {
+        functionName: "getCurrentGamePriority",
+        game_id: 1,
+        user_id: 2
+    });
+        
+    fetch(`https://murder-in-aggieland.herokuapp.com/API/game.php?${params}`, 
+    {
+        method: 'GET',
+        headers: 
+        {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
+    .catch(error => {console.error('Error:', error);});
+}
+
+getCurrentGamePriority();
 
 // addUser();
 // verifyCredentials();
@@ -427,3 +451,4 @@ function placeGuess()
 // getCharacterDisplayData();
 
 // placeGuess();
+

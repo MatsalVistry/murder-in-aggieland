@@ -244,6 +244,7 @@
             $row = pg_fetch_row($result);
 
             $current_priority = $row[0];
+            echo $current_priority;
 
             $response;
 
