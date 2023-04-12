@@ -189,9 +189,8 @@ function checkUserReachedLocation()
         body: JSON.stringify(
         {
             functionName: "checkUserReachedLocation",
-            x_cord: 300,
-            y_cord: 300,
-            z_cord: 300,
+            latitude: 300,
+            longitude: 300,
             game_id: 1,
             user_id: 1
         })
@@ -214,9 +213,8 @@ function checkUserReachedStartLocation()
         body: JSON.stringify(
         {
             functionName: "checkUserReachedStartLocation",
-            x_cord: 300,
-            y_cord: 300,
-            z_cord: 300,
+            latitude: 300,
+            longitude: 300,
             game_id: 1,
             user_id: 1
         })

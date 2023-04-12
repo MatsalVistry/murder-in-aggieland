@@ -6,9 +6,8 @@ CREATE TABLE character (
     image_url VARCHAR(1000),
     priority INTEGER,
     dialogue text,
-    x_coordinate DOUBLE PRECISION,
-    y_coordinate DOUBLE PRECISION,
-    z_coordinate DOUBLE PRECISION,
+    latitude DOUBLE PRECISION,
+    longitude DOUBLE PRECISION,
     is_killer BOOLEAN
 );
 
@@ -21,7 +20,6 @@ CREATE TABLE character (
 -- priority: The priority of the character. A character will be visited in order of priority. The character with the lowest priority will be visited first.
 --           More info about how priority works in the user_game_joiner table.
 -- dialogue: The dialogue that the character will say when the user reaches the character's coordinates.
--- x_coordinate: The x coordinate of the character
--- y_coordinate: The y coordinate of the character
--- z_coordinate: The z coordinate of the character
+-- latitude: The latitude of the character's coordinates
+-- longitude: The longitude of the character's coordinates
 -- is_killer: Whether or not the character is the killer.

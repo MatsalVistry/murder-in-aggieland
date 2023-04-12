@@ -92,9 +92,8 @@
         }
         else if($post['functionName'] == "checkUserReachedLocation")
         {
-            $x_cord = $post['x_cord'];
-            $y_cord = $post['y_cord'];
-            $z_cord = $post['z_cord'];
+            $latitude = $post['latitude'];
+            $longitude = $post['longitude'];
             $game_id = $post['game_id'];
             $user_id = $post['user_id'];
 
@@ -104,17 +103,16 @@
 
             $current_priority = $row[0];
 
-            $query = "SELECT x_coordinate, y_coordinate, z_coordinate FROM character WHERE game_id = '$game_id' AND priority = '$current_priority';";
+            $query = "SELECT latitude, longitude FROM character WHERE game_id = '$game_id' AND priority = '$current_priority';";
             $result = pg_query($dbconn, $query);
             $row = pg_fetch_row($result);
 
-            $end_x = $row[0];
-            $end_y = $row[1];
-            $end_z = $row[2];
+            $end_lat = $row[0];
+            $end_long = $row[1];
 
             $response;
 
-            if(abs($x_cord - $end_x) < 10 && abs($y_cord - $end_y) < 10 && abs($z_cord - $end_z) < 10)
+            if(abs($latitude - $end_lat) < 0.001 && abs($longitude - $end_long) < 0.001)
             {
                 $response = array(
                     'code' => 0,
@@ -133,23 +131,21 @@
         }
         else if($post['functionName'] == "checkUserReachedStartLocation")
         {
-            $x_cord = $post['x_cord'];
-            $y_cord = $post['y_cord'];
-            $z_cord = $post['z_cord'];
+            $latitude = $post['latitude'];
+            $longitude = $post['longitude'];
             $game_id = $post['game_id'];
             $user_id = $post['user_id'];
 
-            $query = "SELECT begin_x, begin_y, begin_z FROM game WHERE game_id = '$game_id';";
+            $query = "SELECT latitude, longitude FROM game WHERE game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
             $row = pg_fetch_row($result);
 
-            $begin_x = $row[0];
-            $begin_y = $row[1];
-            $begin_z = $row[2];
+            $begin_lat = $row[0];
+            $begin_long = $row[1];
 
             $response;
 
-            if(abs($x_cord - $begin_x) < 10 && abs($y_cord - $begin_y) < 10 && abs($z_cord - $begin_z) < 10)
+            if(abs($latitude - $begin_lat) < 0.001 && abs($longitude - $begin_long) < 0.001)
             {
                 $response = array(
                     'code' => 0,
@@ -308,7 +304,7 @@
             $user_id = $_GET['user_id'];
             $game_id = $_GET['game_id'];
 
-            $query = "SELECT c.x_coordinate, c.y_coordinate, c.z_coordinate FROM user_game_joiner as ugj INNER JOIN character as c ON c.game_id = ugj.game_id AND c.priority = ugj.current_priority WHERE ugj.user_id = '$user_id' AND ugj.game_id = '$game_id';";
+            $query = "SELECT c.latitude, c.longitude FROM user_game_joiner as ugj INNER JOIN character as c ON c.game_id = ugj.game_id AND c.priority = ugj.current_priority WHERE ugj.user_id = '$user_id' AND ugj.game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
 
             $response;
@@ -318,9 +314,8 @@
                 $response = array(
                     'code' => 0,
                     'message' => 'Success',
-                    'x_coordinate' => $row[0],
-                    'y_coordinate' => $row[1],
-                    'z_coordinate' => $row[2]
+                    'latitude' => $row[0],
+                    'longitude' => $row[1]
                 );
             }
             else
@@ -337,7 +332,7 @@
         {
             $game_id = $_GET['game_id'];
 
-            $query = "SELECT begin_x, begin_y, begin_z FROM game WHERE game_id = '$game_id';";
+            $query = "SELECT latitude, longitude FROM game WHERE game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
 
             $response;
@@ -347,9 +342,8 @@
                 $response = array(
                     'code' => 0,
                     'message' => 'Success',
-                    'x_coordinate' => $row[0],
-                    'y_coordinate' => $row[1],
-                    'z_coordinate' => $row[2]
+                    'latitude' => $row[0],
+                    'longitude' => $row[1]
                 );
             }
             else
