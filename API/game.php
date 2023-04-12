@@ -234,6 +234,36 @@
 
             echo json_encode($response);
         }
+        else if($_GET['functionName'] == "getCurrentGamePriority")
+        {
+            $user_id = $_GET['user_id'];
+            $game_id = $_GET['game_id'];
+
+            $query = "SELECT current_priority FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+            $row = pg_fetch_row($result);
+
+            $current_priority = $row[0];
+
+            $response;
+
+            if($current_priority)
+            {
+                $response = array(
+                    'code' => 0,
+                    'message' => 'Success',
+                    'current_priority' => $current_priority
+                );
+            }
+            else
+            {
+                $response = array(
+                    'code' => 1,
+                    'message' => 'Failed to get current priority'
+                );
+            }
+        }
+
     }
 ?>
 

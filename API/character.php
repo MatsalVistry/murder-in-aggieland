@@ -69,13 +69,14 @@
         {
             $game_id = $_GET['game_id'];
 
-            $query = "SELECT character_id, description, name, image_url FROM character WHERE game_id = '$game_id';";
+            $query = "SELECT character_id, description, name, image_url, priority FROM character WHERE game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
 
             $ids = array();
             $descriptions = array();
             $names = array();
             $image_urls = array();
+            $priorities = array();
 
             while($row = pg_fetch_row($result))
             {
@@ -83,6 +84,7 @@
                 array_push($descriptions, $row[1]);
                 array_push($names, $row[2]);
                 array_push($image_urls, $row[3]);
+                array_push($priorities, $row[4]);
             }
 
             $response = array(
@@ -91,7 +93,8 @@
                 'ids' => $ids,
                 'descriptions' => $descriptions,
                 'names' => $names,
-                'image_urls' => $image_urls
+                'image_urls' => $image_urls,
+                'priorities' => $priorities
             );
 
             echo json_encode($response);
