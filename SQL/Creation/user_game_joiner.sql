@@ -3,8 +3,7 @@ CREATE TABLE user_game_joiner (
     user_id INTEGER REFERENCES users(user_id),
     game_id INTEGER REFERENCES game(game_id),
     current_priority INTEGER,
-    is_finished BOOLEAN,
-    reached_begin BOOLEAN
+    is_finished BOOLEAN
 );
 
 -- user_game_joiner_id: Primary key for the user_game_joiner table

@@ -24,7 +24,7 @@
         {
             $user_id = $post['user_id'];
             $game_id = $post['game_id'];
-            $current_priority = 1;
+            $current_priority = 0;
 
             $query = "SELECT * FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
             $result = pg_query($dbconn, $query);
@@ -41,7 +41,7 @@
                 exit;
             }
 
-            $query = "INSERT INTO user_game_joiner (user_id, game_id, current_priority, is_finished, reached_begin) VALUES ('$user_id', '$game_id', '$current_priority', false, false);";
+            $query = "INSERT INTO user_game_joiner (user_id, game_id, current_priority, is_finished) VALUES ('$user_id', '$game_id', '$current_priority', false);";
             $result = pg_query($dbconn, $query);
 
             $response;
@@ -129,72 +129,6 @@
 
             echo json_encode($response);
         }
-        else if($post['functionName'] == "checkUserReachedStartLocation")
-        {
-            $latitude = $post['latitude'];
-            $longitude = $post['longitude'];
-            $game_id = $post['game_id'];
-            $user_id = $post['user_id'];
-
-            $query = "SELECT latitude, longitude FROM game WHERE game_id = '$game_id';";
-            $result = pg_query($dbconn, $query);
-            $row = pg_fetch_row($result);
-
-            $begin_lat = $row[0];
-            $begin_long = $row[1];
-
-            $response;
-
-            if(abs($latitude - $begin_lat) < 0.001 && abs($longitude - $begin_long) < 0.001)
-            {
-                $response = array(
-                    'code' => 0,
-                    'reached_location' => true
-                );
-
-                $query = "UPDATE user_game_joiner SET reached_begin = true WHERE user_id = '$user_id' AND game_id = '$game_id';";
-                $result = pg_query($dbconn, $query);
-            }
-            else
-            {
-                $response = array(
-                    'code' => 1,
-                    'reached_location' => false
-                );
-            }
-
-            echo json_encode($response);
-        }
-        else if($post['functionName'] == "checkHasGameStarted")
-        {
-            $user_id = $post['user_id'];
-            $game_id = $post['game_id'];
-
-            $query = "SELECT reached_begin FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
-            $result = pg_query($dbconn, $query);
-            $row = pg_fetch_row($result);
-
-            $reached_begin = $row[0];
-
-            $response;
-
-            if($reached_begin == 't')
-            {
-                $response = array(
-                    'code' => 0,
-                    'has_game_started' => true
-                );
-            }
-            else
-            {
-                $response = array(
-                    'code' => 1,
-                    'has_game_started' => false
-                );
-            }
-
-            echo json_encode($response);
-        }
         else if($post['functionName'] == "updateUserGamePriority")
         {
             $user_id = $post['user_id'];
@@ -271,35 +205,7 @@
     }
     else
     {       
-        if($_GET['functionName'] == "getInitialGameText")
-        {
-            $game_id = $_GET['game_id'];
-
-            $query = "SELECT initial_text FROM game WHERE game_id = '$game_id';";
-            $result = pg_query($dbconn, $query);
-
-            $response;
-
-            if($result)
-            {
-                $row = pg_fetch_row($result);
-                $response = array(
-                    'code' => 0,
-                    'message' => 'Success',
-                    'initial_text' => $row[0]
-                );
-            }
-            else
-            {
-                $response = array(
-                    'code' => 1,
-                    'message' => 'Failed to get initial text'
-                );
-            }
-
-            echo json_encode($response);
-        }
-        else if($_GET['functionName'] == "getCurrentDestination")
+        if($_GET['functionName'] == "getCurrentDestination")
         {
             $user_id = $_GET['user_id'];
             $game_id = $_GET['game_id'];
@@ -323,34 +229,6 @@
                 $response = array(
                     'code' => 1,
                     'message' => 'Failed to get current, possibly reached all destinations'
-                );
-            }
-
-            echo json_encode($response);
-        }
-        else if($_GET['functionName'] == "getStartDestination")
-        {
-            $game_id = $_GET['game_id'];
-
-            $query = "SELECT latitude, longitude FROM game WHERE game_id = '$game_id';";
-            $result = pg_query($dbconn, $query);
-
-            $response;
-
-            if($row = pg_fetch_row($result))
-            {
-                $response = array(
-                    'code' => 0,
-                    'message' => 'Success',
-                    'latitude' => $row[0],
-                    'longitude' => $row[1]
-                );
-            }
-            else
-            {
-                $response = array(
-                    'code' => 1,
-                    'message' => 'Failed to get start location.'
                 );
             }
 

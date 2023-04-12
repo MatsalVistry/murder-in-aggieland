@@ -36,8 +36,8 @@ function verifyCredentials()
         body: JSON.stringify(
         {
             functionName: "verifyCredentials",
-            username: "Test",
-            password: "Test",
+            username: "hello",
+            password: "1",
         })
     })
     .then(response => response.json())
