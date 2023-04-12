@@ -69,7 +69,7 @@
         {
             $game_id = $_GET['game_id'];
 
-            $query = "SELECT character_id, description, name, image_url, priority FROM character WHERE game_id = '$game_id';";
+            $query = "SELECT character_id, description, name, image_url, priority FROM character WHERE game_id = '$game_id' ORDER BY character_id ASC;";
             $result = pg_query($dbconn, $query);
 
             $ids = array();
