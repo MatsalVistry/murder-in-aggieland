@@ -244,7 +244,6 @@
             $row = pg_fetch_row($result);
 
             $current_priority = $row[0];
-            echo $current_priority;
 
             $response;
 
@@ -263,6 +262,8 @@
                     'message' => 'Failed to get current priority'
                 );
             }
+
+            echo json_encode($response);
         }
 
     }
