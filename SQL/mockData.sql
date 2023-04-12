@@ -11,7 +11,7 @@ INSERT INTO game (game_name, creator_id, game_description, latitude, longitude) 
 INSERT INTO user_game_joiner (user_id, game_id, current_priority, is_finished) VALUES (1, 1, 0, false);
 INSERT INTO user_game_joiner (user_id, game_id, current_priority, is_finished) VALUES (2, 1, 1, false);
 
-INSERT INTO character (description, name, game_id, image_url, priority, dialogue, latitude, longitude, is_killer) VALUES ('Intro Character Desc', 'Intro', 1, 'www.pic1.jpg', 1, 'Intro Text', 0, 0, false);
+INSERT INTO character (description, name, game_id, image_url, priority, dialogue, latitude, longitude, is_killer) VALUES ('Intro Character Desc', 'Intro', 1, 'www.pic1.jpg', 0, 'Intro Text', 0, 0, false);
 INSERT INTO character (description, name, game_id, image_url, priority, dialogue, latitude, longitude, is_killer) VALUES ('Temp character desc 1', 'Builder', 1, 'www.pic1.jpg', 1, 'Temp dialogue 1', 100, 100, true);
 INSERT INTO character (description, name, game_id, image_url, priority, dialogue, latitude, longitude, is_killer) VALUES ('Temp character desc 2', 'Architect', 1, 'www.pic2.jpg', 2, 'Temp dialogue 2', 200, 200, false);
 
