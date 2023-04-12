@@ -69,7 +69,7 @@
         {
             $game_id = $_GET['game_id'];
 
-            $query = "SELECT character_id, description, name, image_url, priority FROM character WHERE game_id = '$game_id' ORDER BY character_id ASC;";
+            $query = "SELECT character_id, description, name, image_url, priority, dialogue FROM character WHERE game_id = '$game_id' ORDER BY character_id ASC;";
             $result = pg_query($dbconn, $query);
 
             $ids = array();
@@ -77,6 +77,7 @@
             $names = array();
             $image_urls = array();
             $priorities = array();
+            $dialogue = array();
 
             while($row = pg_fetch_row($result))
             {
@@ -85,6 +86,7 @@
                 array_push($names, $row[2]);
                 array_push($image_urls, $row[3]);
                 array_push($priorities, $row[4]);
+                array_push($dialogue, $row[5]);
             }
 
             $response = array(
@@ -94,7 +96,8 @@
                 'descriptions' => $descriptions,
                 'names' => $names,
                 'image_urls' => $image_urls,
-                'priorities' => $priorities
+                'priorities' => $priorities,
+                'dialogue' => $dialogue
             );
 
             echo json_encode($response);
