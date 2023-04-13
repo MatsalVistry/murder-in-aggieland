@@ -427,7 +427,7 @@ function getCurrentGamePriority()
     .catch(error => {console.error('Error:', error);});
 }
 
-// getCurrentGamePriority();
+getCurrentGamePriority();
 
 // addUser();
 // verifyCredentials();
@@ -448,7 +448,7 @@ function getCurrentGamePriority()
 
 // getCurrentCharacterDialogue();
 // getAllPastCharactersDialogue();
-getCharacterDisplayData();
+// getCharacterDisplayData();
 
 // placeGuess();
 

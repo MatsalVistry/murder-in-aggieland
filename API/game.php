@@ -239,7 +239,7 @@
 
             $response;
 
-            if($current_priority)
+            if($current_priority != null)
             {
                 $response = array(
                     'code' => 0,
