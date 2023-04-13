@@ -176,21 +176,13 @@
                 $query = "UPDATE user_game_joiner SET is_finished = true WHERE user_id = '$user_id' AND game_id = '$game_id';";
                 $result = pg_query($dbconn, $query);
 
+                $query = "DELETE FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
+                $result = pg_query($dbconn, $query);
 
-                if($result)
-                {
-                    $response = array(
-                        'code' => 0,
-                        'message' => 'Success'
-                    );
-                }
-                else
-                {
-                    $response = array(
-                        'code' => 1,
-                        'message' => 'Failed to update user game joiner'
-                    );
-                }
+                $response = array(
+                    'code' => 0,
+                    'message' => 'Success'
+                );
             }
             else
             {
