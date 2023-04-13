@@ -26,7 +26,7 @@ INSERT INTO character (description, name, game_id, image_url, priority, dialogue
     'A brunette woman in her 30s. She is from Spain and now works as a construction worker. She is working on a renovation for Zach. She does not speak much English but is apologetic about the murder (as much as she understands).', 
     'Builder', 
     1, 
-    'www.pic1.jpg', 
+    'Builder.png', 
     1, 
     'Hola! I am the Builder. Mucho gusto! So you have heard about the news? No entiendo much pero I am happy to answer any questions. My alibi? ¿qué significa eso? Ah si. I was there to help fix the leaky old fountain. fue dificil pero the job is done! Sorry to hear about the accident. Cuidarse', 
     100, 
