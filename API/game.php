@@ -163,7 +163,7 @@
             $game_id = $post['game_id'];
             $character_guess_id = $post['character_guess_id'];
 
-            $query = "SELECT is_killer FROM character WHERE game_id = '$game_id' AND character_id = '$character_guess_id';";
+            $query = "SELECT is_killer FROM character WHERE game_id = '$game_id' AND priority = '$character_guess_id';";
             $result = pg_query($dbconn, $query);
             $row = pg_fetch_row($result);
 

@@ -15,7 +15,7 @@ INSERT INTO character (description, name, game_id, image_url, priority, dialogue
     1, 
     'www.pic1.jpg', 
     0, 
-    'All 5 of our suspects were found on the security footage near the Chem fountain around the time of the murder so they need to be investigated thoroughly on their alibis. Please find them all and talk to them about their alibis. When you are ready to catch the killer, click the button on the top right corner with the knife icon. You have only 2 chances to correctly guess the killer. Good luck!',
+    'All 5 of our suspects were found on the security footage near the Chem fountain around the time of the murder so they need to be investigated thoroughly on their alibis. \nPlease find them all and talk to them about their alibis. When you are ready to catch the killer, click the button on the top right corner with the knife icon. You have only 2 chances to correctly guess the killer. Good luck!',
     0, 
     0, 
     false
@@ -28,7 +28,7 @@ INSERT INTO character (description, name, game_id, image_url, priority, dialogue
     1, 
     'Builder.png', 
     1, 
-    'Hola! I am the Builder. Mucho gusto! So you have heard about the news? No entiendo much pero I am happy to answer any questions. My alibi? ¿qué significa eso? Ah si. I was there to help fix the leaky old fountain. fue dificil pero the job is done! Sorry to hear about the accident. Cuidarse', 
+    'Hola! I am the Builder. Mucho gusto! So you have heard about the news? No entiendo much pero I am happy to answer any questions. \nMy alibi? ¿qué significa eso? Ah si. I was there to help fix the leaky old fountain. fue dificil pero the job is done! \nSorry to hear about the accident. Cuidarse', 
     100, 
     100, 
     true
@@ -41,7 +41,7 @@ INSERT INTO character (description, name, game_id, image_url, priority, dialogue
     1, 
     'Professor.png', 
     2,
-    'Howdy! I am the Professor. Are you here about the murder? Yes, I heard! I cannot believe something like that could actually happen here in Aggieland! I am so sorry to hear and I am praying for the fallen aggies family. How can I help? My alibi? Of course! I had just finished up my last class here at Blocker and was headed over to my car parked in the West Campus Garage. I just pass by the fountain on the way! I would like to help so let me know if there is anything else I can do!', 
+    'Howdy! I am the Professor. Are you here about the murder? Yes, I heard! I cannot believe something like that could actually happen here in Aggieland! I am so sorry to hear and I am praying for the fallen aggies family. \nHow can I help? My alibi? Of course! \nI had just finished up my last class here at Blocker and was headed over to my car parked in the West Campus Garage. I just pass by the fountain on the way! I would like to help so let me know if there is anything else I can do!', 
     200, 
     200, 
     false
@@ -54,7 +54,7 @@ INSERT INTO character (description, name, game_id, image_url, priority, dialogue
     1,
     'Chef.png',
     3,
-    'Hello? I am the Cook here at SBISA. I spend all my time here in SBISA. If you are here about the case, I am not interested in helping. My alibi? I was cooking. I cook all day. After that, I go home. Why was I by the Chem fountain? I do not know. I bike home. Maybe I biked through that area on the day of the murder. I do not really pay attention. Now, I have to get back to the kitchen. So long. Wait… I did see something suspicious though. As I was biking, I had to avoid a large metal piece on the ground near the Chem fountain. Not sure if that helps but… anyways goodbye.',
+    'Hello? I am the Cook here at SBISA. I spend all my time here in SBISA. If you are here about the case, I am not interested in helping. \nMy alibi? I was cooking. I cook all day. After that, I go home. \nWhy was I by the Chem fountain? I do not know. I bike home. Maybe I biked through that area on the day of the murder. I do not really pay attention. Now, I have to get back to the kitchen. So long. \nWait… I did see something suspicious though. As I was biking, I had to avoid a large metal piece on the ground near the Chem fountain. Not sure if that helps but… anyways goodbye.',
     300,
     300,
     false
@@ -67,7 +67,7 @@ INSERT INTO character (description, name, game_id, image_url, priority, dialogue
     1,
     'Architect.png',
     4,
-    'Howdy, I am the Architect! Nice to meet you! What can I do for you? A murder?! Here in Aggieland?! My gosh, that is so crazy to hear. No, I have not heard anything about it but I am so sorry to hear! My alibi? Haha okay I guess you would have to tell me when the murder happened then. Tuesday… hmm… well I grade papers on Tuesdays so I was probably grading late. I love to sit by the Chem fountain in the evening while working because it is really nice there. So that is probably what I was doing. I wrapped up around 11 and walked back to my apartment. Great talking to you and I am sorry to hear about the accident again. Hope I was helpful!',
+    'Howdy, I am the Architect! Nice to meet you! What can I do for you? A murder?! Here in Aggieland?! My gosh, that is so crazy to hear. No, I have not heard anything about it but I am so sorry to hear! \nMy alibi? Haha okay I guess you would have to tell me when the murder happened then. Tuesday… hmm… well I grade papers on Tuesdays so I was probably grading late. I love to sit by the Chem fountain in the evening while working because it is really nice there. So that is probably what I was doing. I wrapped up around 11 and walked back to my apartment. \nGreat talking to you and I am sorry to hear about the accident again. Hope I was helpful!',
     400,
     400,
     false
@@ -80,7 +80,7 @@ INSERT INTO character (description, name, game_id, image_url, priority, dialogue
     1,
     'Librarian.png',
     5,
-    'Welcome to Evans, I am the Librarian. Please keep your voice down at all times as there are people trying to read and study. Yes, I heard about that. Unfortunate to hear… Nothing much to my alibi. I work late on Tuesdays and then head home. I am parked in the Northside Garage so I have to walk past the Chem fountain. Alright then, I have to get back to work. Good luck.',
+    'Welcome to Evans, I am the Librarian. Please keep your voice down at all times as there are people trying to read and study. Yes, I heard about that. Unfortunate to hear… \nNothing much to my alibi. I work late on Tuesdays and then head home. I am parked in the Northside Garage so I have to walk past the Chem fountain. \nAlright then, I have to get back to work. Good luck.',
     500,
     500,
     false
