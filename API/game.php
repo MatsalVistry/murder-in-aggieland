@@ -169,6 +169,11 @@
 
             $is_killer = $row[0];
 
+            // increment guess count
+
+            $query = "UPDATE user_game_joiner SET guess_count = guess_count + 1 WHERE user_id = '$user_id' AND game_id = '$game_id';";
+            $result = pg_query($dbconn, $query);
+
             $response;
 
             if($is_killer == 't')
@@ -190,6 +195,25 @@
                     'code' => 1,
                     'message' => 'Incorrect guess'
                 );
+
+                // if guess count >= 2, then delete user from user_game_joiner and send response code 2
+
+                $query = "SELECT guess_count FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
+                $result = pg_query($dbconn, $query);
+                $row = pg_fetch_row($result);
+
+                $guess_count = $row[0];
+
+                if($guess_count >= 2)
+                {
+                    $query = "DELETE FROM user_game_joiner WHERE user_id = '$user_id' AND game_id = '$game_id';";
+                    $result = pg_query($dbconn, $query);
+
+                    $response = array(
+                        'code' => 2,
+                        'message' => 'Exceeded guess limit'
+                    );
+                }
             }
 
             echo json_encode($response);
