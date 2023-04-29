@@ -96,6 +96,25 @@
 
             echo json_encode($response);
         }
+        else if($post['functionName'] == "deleteAccount")
+        {
+            $user_id = $post['user_id'];
+
+            $query = "DELETE FROM user_game_joiner WHERE user_id = '$user_id';";
+            $result = pg_query($dbconn, $query);
+
+            $query = "DELETE FROM users WHERE user_id = '$user_id';";
+            $result = pg_query($dbconn, $query);
+
+            $response;
+
+            $response = array(
+                'code' => 0,
+                'message' => 'Success'
+            );
+
+            echo json_encode($response);
+        }
     }
     else
     {       
